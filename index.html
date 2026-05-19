@@ -25,29 +25,25 @@ html{scroll-behavior:smooth;}
 }
 body{font-family:'Poppins',sans-serif;background:var(--bg1);color:var(--text);overflow-x:hidden;}
 
-/* ─── NAV ─── */
+	
+/* ════════════════════
+   NAV
+════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   background:var(--nav);
-  height:70px;padding:0 3.5rem;
+  height:64px;
+  padding:0 2rem;
   display:flex;align-items:center;justify-content:space-between;
   box-shadow:0 2px 30px rgba(0,0,0,.6);
 }
-.nav-logo{display:flex;align-items:center;gap:.9rem;cursor:pointer;text-decoration:none;}
-.logo-mark{
-    width: 56px;
-    height: 56px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 56px;
-}
-.logo-mark svg{width:56px;height:56px;}
-.nav-links{display:flex;gap:2.2rem;list-style:none;}
+.nav-logo{display:flex;align-items:center;cursor:pointer;text-decoration:none;}
+.logo-mark{display:flex;align-items:center;justify-content:center;}
+.logo-mark img{height:44px;width:auto;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
 .nav-links a{
   color:rgba(255,255,255,.85);text-decoration:none;
-  font-size:.9rem;font-weight:500;
+  font-size:.88rem;font-weight:500;
   transition:color .2s;cursor:pointer;
   position:relative;padding-bottom:2px;
 }
@@ -55,327 +51,357 @@ nav{
 .nav-links a:hover,.nav-links a.active{color:var(--cyan);}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
 
-/* ─── PAGES ─── */
+/* Mobile hamburger */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:none;border:none;padding:4px;
+}
+.hamburger span{
+  display:block;width:24px;height:2px;background:#fff;
+  border-radius:2px;transition:all .3s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile nav drawer */
+.mobile-nav{
+  display:none;position:fixed;top:64px;left:0;right:0;
+  background:var(--nav);z-index:999;
+  padding:1rem 0;border-top:1px solid rgba(100,80,200,.3);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.mobile-nav.open{display:block;}
+.mobile-nav ul{list-style:none;}
+.mobile-nav ul li a{
+  display:block;padding:.9rem 2rem;
+  color:rgba(255,255,255,.85);text-decoration:none;font-size:.95rem;font-weight:500;
+  cursor:pointer;transition:background .2s,color .2s;
+}
+.mobile-nav ul li a:hover,.mobile-nav ul li a.active{
+  color:var(--cyan);background:rgba(0,207,255,.05);
+}
+
+/* ════════════════════
+   PAGES
+════════════════════ */
 .page{display:none;}
 .page.active{display:block;}
 
-/* ══════════════════════════════════════
-   HOME PAGE
-══════════════════════════════════════ */
-.hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;}
+/* ════════════════════
+   HERO
+════════════════════ */
+.hero{
+  position:relative;width:100%;
+  min-height:100vh;
+  overflow:hidden;
+}
 .hero-slide{
-  width:100%;height:100%;position:relative;
-  display:flex;align-items:center;justify-content:flex-start;overflow:hidden;
+  width:100%;min-height:100vh;position:relative;
+  display:flex;align-items:center;justify-content:flex-start;
+  background:linear-gradient(135deg,#080520 0%,#1a0a35 30%,#0d1a30 60%,#050318 100%);
 }
 .hero-img-area{
-    position:absolute;inset:0;width:100%;height:100%;z-index:1;margin-top:35px;
+  position:absolute;inset:0;width:100%;height:100%;z-index:1;
 }
-.hero-img-area img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.hero-img-area img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+}
 .hero-slide::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(5,5,25,0.88) 0%,rgba(5,5,25,0.72) 35%,rgba(5,5,25,0.35) 65%,rgba(5,5,25,0.25) 100%);
+  background:linear-gradient(90deg,rgba(5,5,25,0.92) 0%,rgba(5,5,25,0.75) 40%,rgba(5,5,25,0.3) 70%,rgba(5,5,25,0.15) 100%);
   z-index:2;
 }
-.hero-content{position:relative;z-index:5;padding-left:6rem;max-width:650px;padding-top:70px;}
-.hero-h1-top{
-    font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;color:var(--cyan);
-    margin-bottom:.5rem;text-shadow:0 0 20px rgba(0,207,255,.5);
-    margin-top:104px;padding-bottom:0px;bottom:0px;
-}
-.hero-h1-bot{font-size:clamp(2rem,4vw,4rem);font-weight:700;line-height:1.2;margin-bottom:1.3rem;}
-.hero-sub{font-size:1rem;color:#FFFFFF;line-height:1.8;margin-bottom:2rem;}
-.hs1{background:linear-gradient(135deg,#080520 0%,#1a0a35 30%,#0d1a30 60%,#050318 100%);}
 .hero-slide::after{
   content:'';position:absolute;inset:0;
   background-image:linear-gradient(rgba(100,80,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(100,80,255,.04) 1px,transparent 1px);
-  background-size:55px 55px;pointer-events:none;
+  background-size:55px 55px;pointer-events:none;z-index:2;
 }
-.hero-char-glow{
-  position:absolute;right:10%;bottom:-20px;width:420px;height:88%;
-  background:radial-gradient(ellipse 70% 90% at 50% 60%,rgba(120,0,255,.3) 0%,transparent 70%);
-  pointer-events:none;
+.hero-content{
+  position:relative;z-index:5;
+  padding:100px 2rem 3rem 4rem;
+  max-width:600px;
 }
-.hero-char-figure{
-    position:relative;z-index:2;font-size:14rem;line-height:1;
-    filter:drop-shadow(0 0 40px rgba(160,0,255,.7)) drop-shadow(0 0 80px rgba(0,150,255,.4));
-    margin-bottom:-10px;animation:floatChar 4s ease-in-out infinite;margin-top:30px;
+.hero-h1-top{
+  font-size:clamp(1.3rem,2.5vw,2.2rem);font-weight:700;color:var(--cyan);
+  margin-bottom:.4rem;text-shadow:0 0 20px rgba(0,207,255,.5);
 }
-.hero-btns{display:flex;gap:1rem;margin-bottom:1.4rem;}
+.hero-h1-bot{
+  font-size:clamp(1.6rem,3.5vw,3.2rem);font-weight:700;line-height:1.2;margin-bottom:1rem;
+}
+.hero-sub{font-size:clamp(.82rem,1.5vw,.95rem);color:#fff;line-height:1.8;margin-bottom:1.8rem;}
+.hero-btns{display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap;}
 .hbtn-blue{
-  padding:.72rem 2rem;background:linear-gradient(90deg,#007bff,#00b4ff);
-  color:#fff;font-weight:600;font-size:.88rem;border:none;border-radius:6px;cursor:pointer;
+  padding:.68rem 1.8rem;background:linear-gradient(90deg,#007bff,#00b4ff);
+  color:#fff;font-weight:600;font-size:.85rem;border:none;border-radius:6px;cursor:pointer;
   transition:transform .2s,box-shadow .2s;
 }
-.hbtn-blue:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,123,255,.55),0 0 20px rgba(0,180,255,.4);}
+.hbtn-blue:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,123,255,.55);}
 .hbtn-pink{
-  padding:.72rem 2rem;background:linear-gradient(90deg,#cc00ff,#ff2d9b);
-  color:#fff;font-weight:600;font-size:.88rem;border:none;border-radius:6px;cursor:pointer;
+  padding:.68rem 1.8rem;background:linear-gradient(90deg,#cc00ff,#ff2d9b);
+  color:#fff;font-weight:600;font-size:.85rem;border:none;border-radius:6px;cursor:pointer;
   transition:transform .2s,box-shadow .2s;
 }
-.hbtn-pink:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(204,0,255,.55),0 0 20px rgba(255,45,155,.4);}
+.hbtn-pink:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(204,0,255,.55);}
 .hero-avail{
-    font-size:.78rem;color:rgba(255,255,255,.65);display:flex;align-items:center;
-    gap:.5rem;margin-top:5px;margin-left:0px;margin-bottom:33px;
+  font-size:.75rem;color:rgba(255,255,255,.65);
+  display:flex;align-items:center;gap:.5rem;
 }
-.avail-dot{width:8px;height:8px;border-radius:50%;background:#00ff88;box-shadow:0 0 8px #00ff88;animation:blink 2s infinite;}
+.avail-dot{
+  width:8px;height:8px;border-radius:50%;background:#00ff88;
+  box-shadow:0 0 8px #00ff88;animation:blink 2s infinite;flex-shrink:0;
+}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* Services */
-.services-section{background:var(--bg2);padding:5.5rem 6rem;text-align:center;}
-.sec-title{font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;margin-bottom:2.8rem;}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto;}
-.svc-card{padding:2.8rem 2rem;border-radius:14px;position:relative;overflow:hidden;cursor:default;transition:transform .3s,box-shadow .3s;}
+
+/* ════════════════════
+   SERVICES
+════════════════════ */
+.services-section{background:var(--bg2);padding:4rem 2rem;text-align:center;}
+.sec-title{font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:700;margin-bottom:2.5rem;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:0 auto;}
+.svc-card{padding:2.2rem 1.5rem;border-radius:14px;cursor:default;transition:transform .3s,box-shadow .3s;}
 .svc-card:hover{transform:translateY(-8px);}
 .sc-cyan{background:linear-gradient(140deg,#009fff,#00d4ff);}
-.sc-cyan:hover{box-shadow:0 12px 40px rgba(0,180,255,.5),0 0 30px rgba(0,212,255,.3);}
+.sc-cyan:hover{box-shadow:0 12px 40px rgba(0,180,255,.5);}
 .sc-pink{background:linear-gradient(140deg,#cc00cc,#ff2d9b);}
-.sc-pink:hover{box-shadow:0 12px 40px rgba(204,0,204,.5),0 0 30px rgba(255,45,155,.3);}
+.sc-pink:hover{box-shadow:0 12px 40px rgba(204,0,204,.5);}
 .sc-purple{background:linear-gradient(140deg,#6600cc,#aa00ff);}
-.sc-purple:hover{box-shadow:0 12px 40px rgba(100,0,200,.5),0 0 30px rgba(170,0,255,.3);}
-.svc-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.9rem;}
-.svc-card p{font-size:.87rem;line-height:1.7;opacity:.95;}
+.sc-purple:hover{box-shadow:0 12px 40px rgba(100,0,200,.5);}
+.svc-card h3{font-size:1rem;font-weight:700;margin-bottom:.8rem;}
+.svc-card p{font-size:.83rem;line-height:1.7;opacity:.95;}
 
-/* Portfolio Grid Home */
-.port-home{background:var(--bg1);padding:4.5rem 6rem;}
-.port-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
-.port-header-row h2{font-size:1.5rem;font-weight:700;}
-.port-filter-btns{display:flex;gap:.6rem;}
+/* ════════════════════
+   PORTFOLIO HOME
+════════════════════ */
+.port-home{background:var(--bg1);padding:4rem 2rem;}
+.port-header-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.8rem;gap:1rem;flex-wrap:wrap;}
+.port-header-row h2{font-size:1.4rem;font-weight:700;}
+.port-filter-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
 .pfbtn{
-  padding:.45rem 1.3rem;background:none;border:1px solid rgba(200,180,255,.4);
-  color:var(--muted);font-size:.8rem;font-family:'Poppins',sans-serif;
-  border-radius:6px;cursor:pointer;transition:all .2s;
+  padding:.4rem 1.1rem;background:none;
+  border:1px solid rgba(200,180,255,.4);
+  color:var(--muted);font-size:.75rem;
+  font-family:'Poppins',sans-serif;border-radius:6px;cursor:pointer;transition:all .2s;
 }
-.pfbtn:hover,.pfbtn.on{border-color:var(--cyan);color:#fff;background:rgba(0,207,255,.08);box-shadow:0 0 12px rgba(0,207,255,.2);}
+.pfbtn:hover,.pfbtn.on{border-color:var(--cyan);color:#fff;background:rgba(0,207,255,.08);}
 .pfbtn.on{font-weight:600;}
-.port-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+.port-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
 .pc{
   background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;
   cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s;
 }
-.pc:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(80,0,200,.4),0 0 25px rgba(0,207,255,.15);border-color:rgba(0,207,255,.4);}
-.pc-thumb{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.pc-thumb .big{font-size:3.5rem;filter:drop-shadow(0 0 15px rgba(100,0,255,.6));transition:transform .4s;margin-top:73px;}
-.pc:hover .pc-thumb .big{transform:scale(1.15);}
+.pc:hover{transform:translateY(-6px);box-shadow:0 15px 40px rgba(80,0,200,.4);border-color:rgba(0,207,255,.4);}
+.pc-thumb{
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.pc-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.pc-thumb .big{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.pc-thumb .big img{width:100%;height:100%;object-fit:cover;}
 .pct1{background:linear-gradient(135deg,#061030,#0d2a60);}
 .pct2{background:linear-gradient(135deg,#150530,#351060);}
 .pct3{background:linear-gradient(135deg,#051520,#0d3545);}
 .pct4{background:linear-gradient(135deg,#250a10,#4d1535);}
 .pc-lbl{
-  position:absolute;bottom:.6rem;left:.6rem;background:rgba(0,0,0,.5);border-radius:4px;
-  padding:.2rem .6rem;font-size:.62rem;color:rgba(200,255,255,.7);letter-spacing:.08em;
+  position:absolute;bottom:.5rem;left:.5rem;
+  background:rgba(0,0,0,.55);border-radius:4px;
+  padding:.15rem .5rem;font-size:.58rem;color:rgba(200,255,255,.75);letter-spacing:.06em;
+  z-index:3;
 }
-.pc-info{padding:1rem 1.2rem 1.3rem;}
-.pc-info h4{font-size:.92rem;font-weight:600;margin-bottom:.2rem;}
-.pc-info span{font-size:.72rem;color:var(--muted);}
+.pc-info{padding:.8rem 1rem 1rem;}
+.pc-info h4{font-size:.85rem;font-weight:600;margin-bottom:.15rem;}
+.pc-info span{font-size:.68rem;color:var(--muted);}
 
-/* About Home */
+/* Play / view overlays */
+.pcard[data-video] .pcard-vis::after,
+.pc[data-video] .pc-thumb::after{
+  content:'▶';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:46px;height:46px;background:rgba(0,207,255,.85);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;color:#000;z-index:5;
+  transition:transform .2s,background .2s;
+  line-height:46px;text-align:center;padding-left:3px;
+}
+.pcard[data-video]:hover .pcard-vis::after,
+.pc[data-video]:hover .pc-thumb::after{
+  transform:translate(-50%,-50%) scale(1.12);background:rgba(0,207,255,1);
+}
+.pcard[data-image]:not([data-video]) .pcard-vis::after,
+.pc[data-image]:not([data-video]) .pc-thumb::after{
+  content:'🔍';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:46px;height:46px;background:rgba(255,255,255,.12);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;backdrop-filter:blur(4px);z-index:5;
+  opacity:0;transition:opacity .25s,transform .25s;
+  line-height:46px;text-align:center;
+}
+.pcard[data-image]:not([data-video]):hover .pcard-vis::after,
+.pc[data-image]:not([data-video]):hover .pc-thumb::after{
+  opacity:1;transform:translate(-50%,-50%) scale(1.08);
+}
+
+/* ════════════════════
+   ABOUT HOME
+════════════════════ */
 .about-home{
-  background:var(--bg3);padding:5rem 6rem;
-  display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:center;
+  background:var(--bg3);padding:4rem 2rem;
+  display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;align-items:center;
   position:relative;overflow:hidden;
 }
 .about-home::before{
   content:'ABOUT ME';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);
   font-size:7rem;font-weight:900;color:rgba(100,80,255,.04);pointer-events:none;white-space:nowrap;
 }
-.ah-sec-title{font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;text-align:center;}
-.ah-char{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;margin-left:84px;}
+.ah-char{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
 .char-figure{
-  font-size:9rem;filter:drop-shadow(0 0 30px rgba(100,0,255,.5)) drop-shadow(0 10px 20px rgba(0,0,0,.5));
+  font-size:9rem;filter:drop-shadow(0 0 30px rgba(100,0,255,.5));
   animation:floatChar 3.5s ease-in-out infinite;position:relative;z-index:2;
 }
-
+.char-figure img{max-width:280px;width:100%;height:auto;}
 .char-glow-ring{
   position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:180px;height:40px;background:radial-gradient(ellipse,rgba(100,0,255,.4) 0%,transparent 70%);
+  width:160px;height:35px;background:radial-gradient(ellipse,rgba(100,0,255,.4) 0%,transparent 70%);
 }
-.ah-text{position:relative;z-index:2;margin-left:124px;}
-.ah-text h2{font-size:1.9rem;font-weight:700;margin-bottom:1.3rem;}
-.ah-text p{font-size:1rem;line-height:2.2;color:rgba(255,255,255,.88);font-weight:400;}
+.ah-text{position:relative;z-index:2;}
+.ah-text h2{font-size:1.6rem;font-weight:700;margin-bottom:1rem;}
+.ah-text p{font-size:.92rem;line-height:2;color:rgba(255,255,255,.88);}
 
-/* Process */
-.process-section{background:#08061e;padding:5rem 6rem;text-align:center;position:relative;overflow:hidden;}
-.process-section::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(80,0,200,.2) 0%,transparent 70%);
-  pointer-events:none;
-}
-.proc-row{display:flex;align-items:flex-start;justify-content:center;margin-top:3rem;position:relative;}
+/* ════════════════════
+   PROCESS
+════════════════════ */
+.process-section{background:#08061e;padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.process-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(80,0,200,.2) 0%,transparent 70%);pointer-events:none;}
+.proc-row{display:flex;align-items:flex-start;justify-content:center;margin-top:2.5rem;position:relative;flex-wrap:wrap;gap:1rem;}
 .proc-step{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
-.proc-dot-top{width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan),0 0 20px rgba(0,207,255,.4);margin-bottom:1rem;}
+.proc-dot-top{width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);margin-bottom:.8rem;}
 .proc-dot-top.dim{background:rgba(100,80,200,.5);box-shadow:none;}
 .proc-pill{
-  padding:.85rem 2rem;border-radius:30px;font-size:.85rem;font-weight:600;
+  padding:.7rem 1.5rem;border-radius:30px;font-size:.8rem;font-weight:600;
   background:rgba(30,20,80,.8);border:1px solid rgba(100,80,200,.35);
-  white-space:nowrap;min-width:160px;text-align:center;transition:box-shadow .3s;
+  white-space:nowrap;text-align:center;
 }
-.proc-pill.active{background:linear-gradient(90deg,var(--cyan),#0099cc);color:#000;border-color:transparent;box-shadow:0 0 20px rgba(0,207,255,.5),0 0 40px rgba(0,207,255,.2);}
-.proc-line{width:220px;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(100,80,200,.4));margin-top:7px;box-shadow:0 0 6px rgba(0,207,255,.3);}
+.proc-pill.active{background:linear-gradient(90deg,var(--cyan),#0099cc);color:#000;border-color:transparent;box-shadow:0 0 20px rgba(0,207,255,.5);}
+.proc-line{width:100px;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(100,80,200,.4));margin-top:6px;box-shadow:0 0 6px rgba(0,207,255,.3);}
 
-/* Skills */
-.skills-section{background:var(--bg2);padding:5.5rem 6rem;}
-.skills-section .sec-title{text-align:center;margin-bottom:2.5rem;}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 5rem;max-width:950px;margin:0 auto;}
-.sk-top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.4rem;}
+/* ════════════════════
+   SKILLS
+════════════════════ */
+.skills-section{background:var(--bg2);padding:4rem 2rem;}
+.skills-section .sec-title{text-align:center;margin-bottom:2rem;}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem 3rem;max-width:900px;margin:0 auto;}
+.sk-top{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.35rem;}
 .sk-top span:last-child{color:var(--cyan);}
 .sk-bar{height:5px;background:rgba(100,80,200,.2);border-radius:3px;overflow:hidden;}
 .sk-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--magenta));width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1);box-shadow:0 0 8px rgba(0,207,255,.4);}
 .sk-item.go .sk-fill{width:var(--w);}
 
-/* Achievements */
-.ach-section{background:var(--bg1);padding:5rem 6rem;}
-.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.ach-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;}
-.ach-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--magenta));}
-.ach-card:hover{transform:translateY(-6px);border-color:rgba(0,207,255,.4);box-shadow:0 12px 35px rgba(0,100,255,.2),0 0 20px rgba(0,207,255,.1);}
-.ach-icon{font-size:2.2rem;margin-bottom:.9rem;}
-.ach-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem;}
-.ach-card p{font-size:.82rem;color:var(--muted);line-height:1.7;}
-.tl-item{
-  cursor:pointer;
-}
-/* Contact Home CTA */
-.contact-home{background:var(--bg3);padding:5rem 6rem;text-align:center;position:relative;overflow:hidden;}
+/* ════════════════════
+   CONTACT HOME CTA
+════════════════════ */
+.contact-home{background:var(--bg3);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
 .contact-home::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(80,0,200,.15) 0%,transparent 70%);pointer-events:none;}
-.ch-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:2.5rem;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.ch-form{max-width:800px;margin:0 auto;background:rgba(20,16,60,.6);border:1px solid var(--border);border-radius:14px;padding:2.5rem;}
-.ch-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
-.ch-inp{width:100%;background:rgba(20,16,55,.8);border:1px solid rgba(100,80,200,.3);border-radius:8px;color:#fff;padding:.9rem 1.2rem;font-family:'Poppins',sans-serif;font-size:.88rem;outline:none;transition:border-color .3s,box-shadow .3s;}
+.ch-title{font-size:clamp(1.3rem,3vw,2rem);font-weight:700;margin-bottom:2rem;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ch-form{max-width:800px;margin:0 auto;background:rgba(20,16,60,.6);border:1px solid var(--border);border-radius:14px;padding:2rem;}
+.ch-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;}
+.ch-inp{width:100%;background:rgba(20,16,55,.8);border:1px solid rgba(100,80,200,.3);border-radius:8px;color:#fff;padding:.85rem 1rem;font-family:'Poppins',sans-serif;font-size:.85rem;outline:none;transition:border-color .3s,box-shadow .3s;}
 .ch-inp::placeholder{color:rgba(160,154,192,.5);}
-.ch-inp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,207,255,.1),0 0 15px rgba(0,207,255,.1);}
-.ch-submit{width:100%;padding:1rem;margin-top:.5rem;background:linear-gradient(90deg,var(--blue),var(--magenta),var(--pink));border:none;border-radius:8px;color:#fff;font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;letter-spacing:.05em;transition:transform .2s,box-shadow .2s;}
-.ch-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(100,0,255,.4),0 0 20px rgba(255,45,155,.3);}
-.form-ok{display:none;padding:3rem;text-align:center;}
+.ch-inp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,207,255,.1);}
+.ch-submit{width:100%;padding:.95rem;margin-top:.4rem;background:linear-gradient(90deg,var(--blue),var(--magenta),var(--pink));border:none;border-radius:8px;color:#fff;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.ch-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(100,0,255,.4);}
+.form-ok{display:none;padding:2.5rem;text-align:center;}
 .form-ok.show{display:block;}
-.form-ok .ok-icon{font-size:3rem;margin-bottom:1rem;}
-.form-ok h3{font-size:1.4rem;font-weight:700;margin-bottom:.5rem;color:var(--cyan);}
+.form-ok .ok-icon{font-size:2.5rem;margin-bottom:.8rem;}
+.form-ok h3{font-size:1.3rem;font-weight:700;margin-bottom:.4rem;color:var(--cyan);}
 .form-ok p{color:var(--muted);}
 
-/* ─── FOOTER ─── */
+/* ════════════════════
+   FOOTER
+════════════════════ */
 footer{
-  background:#05031a;padding:1.8rem 3.5rem;
-  display:flex;align-items:center;justify-content:space-between;
+  background:#05031a;padding:1.5rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
   border-top:1px solid rgba(100,80,200,.2);
 }
-.footer-logo{display:flex;align-items:center;gap:.7rem;}
-.footer-copy{font-size:.75rem;color:rgba(255,255,255,.5);}
+.footer-logo img{height:50px;width:auto;}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.5);}
 .footer-copy span{color:rgba(255,255,255,.8);}
-.footer-socials{display:flex;align-items:center;gap:.6rem;}
-.footer-socials span{font-size:.75rem;color:rgba(255,255,255,.5);margin-right:.3rem;}
+.footer-socials{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.footer-socials>span{font-size:.72rem;color:rgba(255,255,255,.5);}
 .soc-icon{
-  width:36px;height:36px;border-radius:8px;
+  width:34px;height:34px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  font-size:1rem;text-decoration:none;cursor:pointer;
-  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;overflow:hidden;
 }
+.soc-icon img{width:100%;height:100%;object-fit:cover;}
 .soc-icon:hover{transform:scale(1.18);box-shadow:0 4px 15px rgba(255,255,255,.2);}
-.si-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
 .si-li{background:#0077b5;}
 .si-yt{background:#ff0000;}
 .si-be{background:#1769ff;}
 
-/* ═══════════════════════════════════
-   ABOUT PAGE
-═══════════════════════════════════ */
-.page-hero{min-height:45vh;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);display:flex;align-items:flex-end;padding:9rem 6rem 4rem;position:relative;overflow:hidden;}
-.page-hero::before{content:attr(data-bg-text);position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:min(12rem,15vw);font-weight:900;color:rgba(100,80,255,.04);pointer-events:none;white-space:nowrap;}
-.page-hero h1{font-size:clamp(2rem,5vw,4rem);font-weight:700;position:relative;z-index:1;}
+/* ════════════════════
+   PAGE HERO BANNER
+════════════════════ */
+.page-hero{
+  min-height:38vh;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);
+  display:flex;align-items:flex-end;padding:7rem 2rem 3rem;position:relative;overflow:hidden;
+}
+.page-hero::before{
+  content:attr(data-bg-text);position:absolute;right:1rem;top:50%;transform:translateY(-50%);
+  font-size:min(10rem,18vw);font-weight:900;color:rgba(100,80,255,.04);pointer-events:none;white-space:nowrap;
+}
+.page-hero h1{font-size:clamp(1.8rem,5vw,3.5rem);font-weight:700;position:relative;z-index:1;}
 .page-hero h1 span{background:linear-gradient(90deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.page-hero p{color:var(--muted);font-size:.95rem;margin-top:.7rem;position:relative;z-index:1;}
+.page-hero p{color:var(--muted);font-size:.88rem;margin-top:.6rem;position:relative;z-index:1;}
 
-.about-layout{max-width:1300px;margin:0 auto;padding:5rem 6rem 6rem;display:grid;grid-template-columns:1.5fr 1fr;gap:5rem;}
-.sec-label{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem;}
+/* ════════════════════
+   ABOUT PAGE LAYOUT
+════════════════════ */
+.about-layout{max-width:1200px;margin:0 auto;padding:3rem 2rem 5rem;display:grid;grid-template-columns:1.5fr 1fr;gap:3.5rem;}
+.sec-label{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;}
 .sec-label::after{content:'';flex:1;height:1px;background:rgba(100,80,200,.3);}
-.about-block{margin-bottom:3.5rem;}
-.about-block h3{font-size:1.5rem;font-weight:700;margin-bottom:1rem;}
-.about-block p{color:var(--muted);line-height:1.9;font-size:.95rem;}
-.tl{position:relative;padding-left:2rem;}
+.about-block{margin-bottom:3rem;}
+.about-block h3{font-size:1.4rem;font-weight:700;margin-bottom:.9rem;}
+.about-block p{color:var(--muted);line-height:1.9;font-size:.92rem;}
+.tl{position:relative;padding-left:1.8rem;}
 .tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--magenta),rgba(100,80,200,.2));}
-.tl-item{position:relative;margin-bottom:2.2rem;}
-.tl-item::before{content:'';position:absolute;left:-2.38rem;top:.45rem;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 20px rgba(0,207,255,.3);}
-.tl-yr{font-size:.68rem;letter-spacing:.15em;color:var(--cyan);margin-bottom:.2rem;text-transform:uppercase;}
-.tl-ti{font-size:1rem;font-weight:600;margin-bottom:.3rem;}
-.tl-de{font-size:.82rem;color:var(--muted);line-height:1.7;}
+.tl-item{position:relative;margin-bottom:2rem;cursor:pointer;}
+.tl-item::before{content:'';position:absolute;left:-2.2rem;top:.4rem;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);}
+.tl-yr{font-size:.65rem;letter-spacing:.14em;color:var(--cyan);margin-bottom:.2rem;text-transform:uppercase;}
+.tl-ti{font-size:.95rem;font-weight:600;margin-bottom:.25rem;}
+.tl-de{font-size:.8rem;color:var(--muted);line-height:1.7;}
 .info-col{}
-.icard{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:1.7rem;margin-bottom:1.4rem;transition:border-color .3s,box-shadow .3s;}
+.icard{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1.2rem;transition:border-color .3s,box-shadow .3s;}
 .icard:hover{border-color:rgba(0,207,255,.3);box-shadow:0 8px 25px rgba(0,100,200,.15);}
-.icard-h{font-size:.82rem;font-weight:600;color:var(--cyan);margin-bottom:1.2rem;letter-spacing:.04em;}
-.irow{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(100,80,200,.1);font-size:.83rem;}
+.icard-h{font-size:.78rem;font-weight:600;color:var(--cyan);margin-bottom:1rem;letter-spacing:.04em;}
+.irow{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(100,80,200,.1);font-size:.8rem;}
 .irow:last-child{border-bottom:none;}
 .ir-l{color:var(--muted);}
-.ir-r{color:#fff;font-weight:500;text-align:right;}
+.ir-r{color:#fff;font-weight:500;text-align:right;font-size:.78rem;}
 .ir-r.cyan{color:var(--cyan);}
-.tool-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.6rem;}
-.ttag{padding:.3rem .85rem;background:rgba(0,207,255,.06);border:1px solid rgba(0,207,255,.2);border-radius:20px;font-size:.72rem;color:var(--cyan);transition:background .2s,box-shadow .2s;cursor:default;}
-.ttag:hover{background:rgba(0,207,255,.15);box-shadow:0 0 10px rgba(0,207,255,.2);}
+.tool-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem;}
+.ttag{padding:.28rem .8rem;background:rgba(0,207,255,.06);border:1px solid rgba(0,207,255,.2);border-radius:20px;font-size:.68rem;color:var(--cyan);cursor:default;}
+.ttag:hover{background:rgba(0,207,255,.15);}
 
-/* ═══════════════════════════════════
+/* ════════════════════
    PORTFOLIO PAGE
-═══════════════════════════════════ */
-.port-main{padding:3rem 6rem 6rem;background:var(--bg1);}
-.tab-bar{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap;}
-.tab-btn{padding:.6rem 1.6rem;background:none;border:1px solid rgba(200,180,255,.35);color:var(--muted);font-size:.82rem;font-family:'Poppins',sans-serif;border-radius:30px;cursor:pointer;transition:all .25s;}
-.tab-btn:hover{border-color:var(--cyan);color:#fff;box-shadow:0 0 12px rgba(0,207,255,.2);}
+════════════════════ */
+.port-main{padding:2.5rem 2rem 5rem;background:var(--bg1);}
+.tab-bar{display:flex;gap:.4rem;margin-bottom:2rem;flex-wrap:wrap;}
+.tab-btn{padding:.55rem 1.3rem;background:none;border:1px solid rgba(200,180,255,.35);color:var(--muted);font-size:.78rem;font-family:'Poppins',sans-serif;border-radius:30px;cursor:pointer;transition:all .25s;}
+.tab-btn:hover{border-color:var(--cyan);color:#fff;}
 .tab-btn.on{background:linear-gradient(90deg,var(--cyan),#0099cc);border-color:transparent;color:#000;font-weight:600;box-shadow:0 0 18px rgba(0,207,255,.4);}
 .tab-panel{display:none;}
-.tab-panel.on{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.tab-panel.on{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
 .pcard{background:var(--card2);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s;}
-.pcard:hover{transform:translateY(-8px);box-shadow:0 16px 45px rgba(80,0,200,.35),0 0 25px rgba(0,207,255,.12);border-color:rgba(0,207,255,.4);}
+.pcard:hover{transform:translateY(-7px);box-shadow:0 16px 45px rgba(80,0,200,.35);border-color:rgba(0,207,255,.4);}
 .pcard-vis{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.pcard-vis .big{font-size:4rem;filter:drop-shadow(0 0 20px rgba(120,0,255,.7));transition:transform .4s;margin-top:70px;}
-.pcard:hover .pcard-vis .big{transform:scale(1.2);}
-.pcard-vis .chip{position:absolute;top:.8rem;left:.8rem;background:rgba(0,0,0,.55);border-radius:4px;padding:.2rem .6rem;font-size:.62rem;color:rgba(200,255,255,.75);letter-spacing:.08em;}
-
-/* Play button overlay on cards that have video */
-.pcard[data-video] .pcard-vis::after,
-.pc[data-video] .pc-thumb::after {
-  content:'▶';
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:52px;height:52px;
-  background:rgba(0,207,255,.85);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;color:#000;
-  box-shadow:0 0 20px rgba(0,207,255,.6);
-  z-index:5;
-  transition:transform .2s,background .2s;
-  line-height:52px;
-  text-align:center;
-  padding-left:4px;
-}
-.pcard[data-video]:hover .pcard-vis::after,
-.pc[data-video]:hover .pc-thumb::after {
-  transform:translate(-50%,-50%) scale(1.15);
-  background:rgba(0,207,255,1);
-}
-
-/* View icon overlay on image-only cards */
-.pcard[data-image]:not([data-video]) .pcard-vis::after,
-.pc[data-image]:not([data-video]) .pc-thumb::after {
-  content:'🔍';
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:52px;height:52px;
-  background:rgba(255,255,255,.15);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;
-  backdrop-filter:blur(4px);
-  z-index:5;
-  opacity:0;
-  transition:opacity .25s,transform .25s;
-  line-height:52px;
-  text-align:center;
-}
-.pcard[data-image]:not([data-video]):hover .pcard-vis::after,
-.pc[data-image]:not([data-video]):hover .pc-thumb::after {
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1.1);
-}
-
+.pcard-vis .big{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.pcard-vis .big img{width:100%;height:100%;object-fit:cover;}
+.pcard-vis .chip{position:absolute;top:.7rem;left:.7rem;background:rgba(0,0,0,.55);border-radius:4px;padding:.18rem .55rem;font-size:.58rem;color:rgba(200,255,255,.75);letter-spacing:.07em;z-index:4;}
 .pv1{background:linear-gradient(135deg,#060e25,#0d2255);}
 .pv2{background:linear-gradient(135deg,#12042a,#2a0a55);}
 .pv3{background:linear-gradient(135deg,#041218,#0a2835);}
@@ -384,157 +410,233 @@ footer{
 .pv6{background:linear-gradient(135deg,#050e22,#0a2248);}
 .pv7{background:linear-gradient(135deg,#100420,#200840);}
 .pv8{background:linear-gradient(135deg,#041010,#0a2828);}
-.pcard-info{padding:1.3rem 1.5rem 1.5rem;}
-.pcard-cat{font-size:.65rem;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem;}
-.pcard-ti{font-size:1rem;font-weight:600;margin-bottom:.4rem;}
-.pcard-de{font-size:.8rem;color:var(--muted);line-height:1.6;}
-.pcard-yr{font-size:.68rem;color:rgba(100,200,255,.35);margin-top:.5rem;}
+.pcard-info{padding:1.1rem 1.3rem 1.3rem;}
+.pcard-cat{font-size:.6rem;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.25rem;}
+.pcard-ti{font-size:.92rem;font-weight:600;margin-bottom:.3rem;}
+.pcard-de{font-size:.76rem;color:var(--muted);line-height:1.6;}
+.pcard-yr{font-size:.65rem;color:rgba(100,200,255,.35);margin-top:.4rem;}
 
 /* Testimonials */
-.testi-wrap{background:var(--bg2);padding:5rem 6rem;}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.tc{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:border-color .3s,transform .3s,box-shadow .3s;}
-.tc:hover{border-color:rgba(0,207,255,.35);transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,100,200,.2),0 0 15px rgba(0,207,255,.1);}
-.tc-q{font-size:3rem;line-height:1;background:linear-gradient(90deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem;}
-.tc-stars{color:#ffd700;font-size:.85rem;letter-spacing:.1em;margin-bottom:.9rem;}
-.tc-text{font-size:.84rem;color:var(--muted);line-height:1.8;font-style:italic;margin-bottom:1.2rem;}
-.tc-name{font-size:.92rem;font-weight:600;}
-.tc-role{font-size:.7rem;color:var(--cyan);margin-top:.2rem;}
+.testi-wrap{background:var(--bg2);padding:4rem 2rem;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem;}
+.tc{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1.8rem;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.tc:hover{border-color:rgba(0,207,255,.35);transform:translateY(-5px);}
+.tc-q{font-size:2.5rem;line-height:1;background:linear-gradient(90deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;}
+.tc-stars{color:#ffd700;font-size:.82rem;margin-bottom:.8rem;}
+.tc-text{font-size:.8rem;color:var(--muted);line-height:1.8;font-style:italic;margin-bottom:1rem;}
+.tc-name{font-size:.88rem;font-weight:600;}
+.tc-role{font-size:.68rem;color:var(--cyan);margin-top:.15rem;}
 
-/* ═══════════════════════════════════
+/* ════════════════════
    CONTACT PAGE
-═══════════════════════════════════ */
-.contact-main{max-width:1300px;margin:0 auto;padding:4rem 6rem 7rem;display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;}
-.cf-title{font-size:1.8rem;font-weight:700;margin-bottom:2rem;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.cf-row{margin-bottom:1.1rem;}
-.cf-row label{display:block;font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:.5rem;}
-.cf-inp{width:100%;background:rgba(28,22,96,.7);border:1px solid rgba(100,80,200,.3);border-radius:8px;color:#fff;padding:.9rem 1.2rem;font-family:'Poppins',sans-serif;font-size:.88rem;outline:none;transition:border-color .3s,box-shadow .3s;}
+════════════════════ */
+.contact-main{max-width:1200px;margin:0 auto;padding:3rem 2rem 5rem;display:grid;grid-template-columns:1.2fr 1fr;gap:3.5rem;}
+.cf-title{font-size:1.6rem;font-weight:700;margin-bottom:1.8rem;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cf-row{margin-bottom:1rem;}
+.cf-row label{display:block;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:.45rem;}
+.cf-inp{width:100%;background:rgba(28,22,96,.7);border:1px solid rgba(100,80,200,.3);border-radius:8px;color:#fff;padding:.85rem 1rem;font-family:'Poppins',sans-serif;font-size:.85rem;outline:none;transition:border-color .3s,box-shadow .3s;}
 .cf-inp::placeholder{color:rgba(160,154,192,.45);}
-.cf-inp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,207,255,.1),0 0 15px rgba(0,207,255,.08);}
+.cf-inp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,207,255,.1);}
 .cf-inp option{background:#1c1660;}
-.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
-.cf-ta{resize:vertical;min-height:130px;}
-.cf-submit{width:100%;padding:1rem;margin-top:.5rem;background:linear-gradient(90deg,var(--cyan),var(--magenta),var(--pink));border:none;border-radius:8px;color:#fff;font-family:'Poppins',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:transform .2s,box-shadow .2s;}
-.cf-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,207,255,.3),0 0 20px rgba(255,45,155,.25);}
-.contact-info-area{margin-left:95px;margin-top:209px;}
-.ci-label{font-size:.67rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.2rem;display:block;}
-.ci-block{margin-bottom:2.5rem;}
-.ci-item{display:flex;align-items:flex-start;gap:.9rem;margin-bottom:1rem;}
-.ci-ico{width:42px;height:42px;flex-shrink:0;background:rgba(0,207,255,.07);border:1px solid rgba(0,207,255,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
-.ci-txt a,.ci-txt span{display:block;color:#fff;font-size:.88rem;text-decoration:none;transition:color .2s;}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cf-ta{resize:vertical;min-height:120px;}
+.cf-submit{width:100%;padding:.95rem;margin-top:.4rem;background:linear-gradient(90deg,var(--cyan),var(--magenta),var(--pink));border:none;border-radius:8px;color:#fff;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.cf-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,207,255,.3);}
+.contact-info-area{padding-top:3.5rem;}
+.ci-label{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;display:block;}
+.ci-block{margin-bottom:2rem;}
+.ci-item{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.9rem;}
+.ci-ico{width:40px;height:40px;flex-shrink:0;background:rgba(0,207,255,.07);border:1px solid rgba(0,207,255,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.ci-txt a,.ci-txt span{display:block;color:#fff;font-size:.84rem;text-decoration:none;transition:color .2s;}
 .ci-txt a:hover{color:var(--cyan);}
-.ci-txt small{color:var(--muted);font-size:.72rem;}
-.soc-links{display:flex;flex-direction:column;gap:.7rem;}
-.slink{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;background:var(--card2);border:1px solid var(--border);border-radius:8px;color:#fff;text-decoration:none;transition:border-color .25s,transform .25s,box-shadow .25s,background .25s;}
-.slink:hover{border-color:rgba(0,207,255,.4);transform:translateX(6px);background:rgba(0,207,255,.04);box-shadow:0 0 18px rgba(0,207,255,.1);}
-.sl-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;}
-.sl-name{flex:1;font-size:.85rem;font-weight:500;}
-.sl-handle{font-size:.72rem;color:var(--cyan);}
-.sl-arr{color:var(--muted);font-size:.8rem;transition:transform .25s;}
-.slink:hover .sl-arr{transform:translateX(4px);color:var(--cyan);}
+.ci-txt small{color:var(--muted);font-size:.7rem;}
 
-/* ═══════════════════════════════════
-   MODAL / LIGHTBOX  ← NEW
-═══════════════════════════════════ */
+/* ════════════════════
+   MODAL / LIGHTBOX
+════════════════════ */
 #modal-overlay{
-  display:none;
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(0,0,0,.88);
-  backdrop-filter:blur(8px);
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.9);backdrop-filter:blur(8px);
   align-items:center;justify-content:center;
-  animation:fadeIn .25s ease;
 }
 #modal-overlay.open{display:flex;}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .modal-box{
-  position:relative;
-  max-width:900px;width:90vw;
-  background:var(--card2);
-  border:1px solid rgba(0,207,255,.3);
-  border-radius:16px;
-  overflow:hidden;
+  position:relative;max-width:880px;width:93vw;
+  background:var(--card2);border:1px solid rgba(0,207,255,.3);
+  border-radius:16px;overflow:hidden;
   box-shadow:0 0 60px rgba(0,207,255,.2),0 30px 80px rgba(0,0,0,.6);
   animation:slideUp .3s ease;
+  max-height:92vh;overflow-y:auto;
 }
 @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
 .modal-close{
-  position:absolute;top:1rem;right:1rem;z-index:10;
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);
-  color:#fff;font-size:1.2rem;cursor:pointer;
+  position:absolute;top:.8rem;right:.8rem;z-index:10;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:1.1rem;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   transition:background .2s,transform .2s;
 }
 .modal-close:hover{background:rgba(255,45,155,.7);transform:scale(1.1);}
 #modal-video-wrap{
-  position:relative;width:100%;padding-bottom:56.25%;height:0;
-  display:none;
+  position:relative;width:100%;padding-bottom:56.25%;height:0;display:none;
 }
 #modal-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
-#modal-img-wrap{display:none;text-align:center;}
-#modal-img-wrap img{max-width:100%;max-height:80vh;display:block;margin:0 auto;}
-.modal-info{padding:1.5rem 1.8rem;}
-.modal-info h3{font-size:1.15rem;font-weight:700;margin-bottom:.4rem;}
-.modal-info p{font-size:.82rem;color:var(--muted);line-height:1.7;}
-.modal-info .modal-cat{font-size:.65rem;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem;}
-#modal-iframe{
-  width:100%;
-  height:100%;
-}	
+#modal-img-wrap{display:none;text-align:center;background:#000;}
+#modal-img-wrap img{max-width:100%;max-height:75vh;display:block;margin:0 auto;object-fit:contain;}
+.modal-info{padding:1.2rem 1.6rem 1.5rem;}
+.modal-cat{font-size:.6rem;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;}
+.modal-info h2{font-size:1.05rem;font-weight:700;margin-bottom:.35rem;}
+.modal-info p{font-size:.78rem;color:var(--muted);line-height:1.7;}
 
-/* ─── RESPONSIVE ─── */
-@media(max-width:957px){
-  nav{padding:0 1.5rem;}
-  .hero-content{padding:70px 2rem 0;}
-  .hero-img-area{display:none;}
-  .services-section,.port-home,.about-home,.process-section,.skills-section,.ach-section,.contact-home{padding:4rem 2rem;}
-  .svc-grid,.ach-grid{grid-template-columns:1fr;}
-  .port-cards{grid-template-columns:1fr 1fr;}
-  .about-home{grid-template-columns:1fr;}
-  .ah-char{display:none;}
-  .proc-row{flex-wrap:wrap;gap:1.5rem;justify-content:center;}
-  .proc-line{display:none;}
-  .skills-grid{grid-template-columns:1fr;}
-  .page-hero{padding:8rem 2rem 3rem;}
-  .about-layout{grid-template-columns:1fr;padding:3rem 2rem;}
-  .port-main{padding:2rem;}
-  .tab-panel.on{grid-template-columns:1fr;}
-  .testi-wrap{padding:4rem 2rem;}
+/* ════════════════════════════════════
+   RESPONSIVE — TABLET (max 900px)
+════════════════════════════════════ */
+@media(max-width:900px){
+  /* Nav */
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+
+  /* Hero */
+  .hero-content{padding:90px 1.5rem 3rem;}
+  .hero-h1-top{font-size:1.4rem;}
+  .hero-h1-bot{font-size:2rem;}
+
+  /* Services */
+  .svc-grid{grid-template-columns:1fr;}
+  .services-section{padding:3rem 1.5rem;}
+
+  /* Portfolio Home */
+  .port-home{padding:3rem 1.5rem;}
+  .port-cards{grid-template-columns:repeat(2,1fr);}
+  .port-header-row{flex-direction:column;align-items:flex-start;}
+
+  /* About Home */
+  .about-home{grid-template-columns:1fr;padding:3rem 1.5rem;gap:2rem;}
+  .ah-char{margin-bottom:1rem;}
+  .char-figure img{max-width:200px;}
+
+  /* Process */
+  .process-section{padding:3rem 1.5rem;}
+  .proc-row{flex-direction:column;align-items:center;gap:1rem;}
+  .proc-line{width:1px;height:30px;margin-top:0;background:linear-gradient(to bottom,var(--cyan),rgba(100,80,200,.4));}
+
+  /* Skills */
+  .skills-section{padding:3rem 1.5rem;}
+  .skills-grid{grid-template-columns:1fr;gap:.7rem 0;}
+
+  /* Contact CTA */
+  .contact-home{padding:3rem 1.5rem;}
+  .ch-row{grid-template-columns:1fr;}
+
+  /* Footer */
+  footer{flex-direction:column;align-items:flex-start;gap:.8rem;padding:1.5rem;}
+
+  /* About Page */
+  .about-layout{grid-template-columns:1fr;padding:2.5rem 1.5rem;}
+  .page-hero{padding:6rem 1.5rem 2.5rem;}
+
+  /* Portfolio Page */
+  .port-main{padding:2rem 1.5rem 4rem;}
+  .tab-panel.on{grid-template-columns:repeat(2,1fr);}
+  .testi-wrap{padding:3rem 1.5rem;}
   .testi-grid{grid-template-columns:1fr;}
-  .contact-main{grid-template-columns:1fr;padding:3rem 2rem;}
+
+  /* Contact Page */
+  .contact-main{grid-template-columns:1fr;padding:2.5rem 1.5rem 4rem;}
+  .contact-info-area{padding-top:0;}
   .cf-grid{grid-template-columns:1fr;}
-  footer{flex-direction:column;gap:1rem;padding:1.5rem;}
+}
+
+/* ════════════════════════════════════
+   RESPONSIVE — MOBILE (max 600px)
+════════════════════════════════════ */
+@media(max-width:600px){
+  nav{height:58px;padding:0 1.2rem;}
+  .mobile-nav{top:58px;}
+  .logo-mark img{height:36px;}
+
+  /* Hero */
+  .hero-content{padding:80px 1.2rem 2.5rem;}
+  .hero-h1-top{font-size:1.15rem;}
+  .hero-h1-bot{font-size:1.6rem;}
+  .hero-sub{font-size:.8rem;}
+  .hbtn-blue,.hbtn-pink{padding:.6rem 1.3rem;font-size:.78rem;}
+
+  /* Services */
+  .services-section{padding:2.5rem 1.2rem;}
+  .svc-card{padding:1.8rem 1.2rem;}
+
+  /* Portfolio Home */
+  .port-home{padding:2.5rem 1.2rem;}
+  .port-cards{grid-template-columns:1fr 1fr;}
+  .pc-info h4{font-size:.75rem;}
+
+  /* About Home */
+  .about-home{padding:2.5rem 1.2rem;}
+  .ah-char{display:none;}
+  .ah-text{margin-left:0;}
+  .ah-text h2{font-size:1.3rem;}
+  .ah-text p{font-size:.85rem;line-height:1.9;}
+
+  /* Process pills */
+  .proc-pill{min-width:140px;font-size:.75rem;padding:.6rem 1.2rem;}
+
+  /* Skills */
+  .skills-section{padding:2.5rem 1.2rem;}
+
+  /* Contact CTA */
+  .contact-home{padding:2.5rem 1.2rem;}
+  .ch-form{padding:1.5rem 1rem;}
+
+  /* Footer */
+  footer{padding:1.2rem;}
+  .footer-copy{font-size:.65rem;}
+
+  /* Page hero */
+  .page-hero{padding:5.5rem 1.2rem 2rem;}
+  .page-hero h1{font-size:1.8rem;}
+
+  /* About layout */
+  .about-layout{padding:2rem 1.2rem 3rem;gap:2rem;}
+  .about-block h3{font-size:1.2rem;}
+  .icard{padding:1.2rem;}
+  .irow{font-size:.75rem;}
+
+  /* Portfolio page */
+  .port-main{padding:1.5rem 1.2rem 3rem;}
+  .tab-bar{gap:.3rem;}
+  .tab-btn{padding:.45rem 1rem;font-size:.72rem;}
+  .tab-panel.on{grid-template-columns:1fr;}
+  .testi-wrap{padding:2.5rem 1.2rem;}
+
+  /* Contact page */
+  .contact-main{padding:2rem 1.2rem 3rem;}
+  .cf-title{font-size:1.3rem;}
+
+  /* Modal */
+  .modal-box{width:96vw;border-radius:12px;}
+  .modal-info{padding:1rem 1.2rem 1.2rem;}
+  .modal-info h2{font-size:.95rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- ═════════════════════════════
-   MODAL LIGHTBOX  ← NEW
-═════════════════════════════ -->
+<!-- MODAL LIGHTBOX -->
 <div id="modal-overlay" onclick="closeModal(event)">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModalBtn()">✕</button>
-    <!-- Video embed -->
     <div id="modal-video-wrap">
-      <iframe
-        id="modal-iframe"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
+      <iframe id="modal-iframe" frameborder="0" allowfullscreen allow="autoplay"></iframe>
     </div>
-    <!-- Image view -->
     <div id="modal-img-wrap">
-      <img id="modal-img" src="" alt="Project Image">
+      <img id="modal-img" src="" alt="Project">
     </div>
-    <!-- Info -->
-     <div class="modal-info">
-
+    <div class="modal-info">
+      <div class="modal-cat" id="modal-cat"></div>
       <h2 id="modal-title"></h2>
-
       <p id="modal-desc"></p>
-
-      <span id="modal-cat"></span>
     </div>
   </div>
 </div>
@@ -543,24 +645,38 @@ footer{
 <nav>
   <a class="nav-logo" onclick="showPage('home')">
     <div class="logo-mark">
-      <img src="images/ds logo (1).png" width="200" height="60" alt=""/>
+      <img src="images/ds logo (1).png" alt="Divyanshi Sharma Logo"/>
     </div>
   </a>
+  <!-- Desktop nav -->
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nl-home" class="active">Home</a></li>
     <li><a onclick="showPage('about')" id="nl-about">About</a></li>
     <li><a onclick="showPage('portfolio')" id="nl-portfolio">Portfolio</a></li>
     <li><a onclick="showPage('contact')" id="nl-contact">Contact</a></li>
   </ul>
+  <!-- Mobile hamburger -->
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a onclick="showPage('home');closeMobileNav()" id="mnl-home" class="active">Home</a></li>
+    <li><a onclick="showPage('about');closeMobileNav()" id="mnl-about">About</a></li>
+    <li><a onclick="showPage('portfolio');closeMobileNav()" id="mnl-portfolio">Portfolio</a></li>
+    <li><a onclick="showPage('contact');closeMobileNav()" id="mnl-contact">Contact</a></li>
+  </ul>
+</div>
 
 <!-- ═════════ HOME PAGE ═════════ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-slide hs1">
       <div class="hero-img-area">
-        <div class="hero-char-glow"></div>
-        <div class="hero-char-figure"><img src="images/ban.png" width="643" height="360" alt=""/></div>
+        <img src="images/ban.png" alt="Banner"/>
       </div>
       <div class="hero-content">
         <div class="hero-h1-top">Bringing Ideas to Life</div>
@@ -570,7 +686,7 @@ footer{
           <button class="hbtn-blue" onclick="showPage('portfolio')">View Work</button>
           <button class="hbtn-pink" onclick="showPage('contact')">Hire Me</button>
         </div>
-        <div class="hero-avail"><span class="avail-dot"></span>Available for Freelance &amp; Project Worldwide</div>
+        <div class="hero-avail"><span class="avail-dot"></span>Available for Freelance &amp; Projects Worldwide</div>
       </div>
     </div>
   </div>
@@ -581,24 +697,11 @@ footer{
     <div class="svc-grid">
       <div class="svc-card sc-cyan"><h3>2D Animation</h3><p>Engaging character animation &amp; storytelling that connects with audiences.</p></div>
       <div class="svc-card sc-pink"><h3>Motion Graphics</h3><p>Dynamic visuals for ads, social media &amp; logo animation that capture attention.</p></div>
-      <div class="svc-card sc-purple"><h3>VFX &amp; Compositing</h3><p>Cinematic visual effects, compositing that add magic and realism to your vision.</p></div>
+      <div class="svc-card sc-purple"><h3>VFX &amp; Compositing</h3><p>Cinematic visual effects and compositing that add magic and realism to your vision.</p></div>
     </div>
   </div>
 
-  <!-- Portfolio Preview — Home -->
-  <!-- 
-    ══════════════════════════════════════════════
-    HOW TO ADD VIDEO / IMAGE TO HOME PORTFOLIO CARDS:
-
-    data-video="YOUTUBE_VIDEO_ID"  → sirf video ID daalo
-      Example: youtube.com/watch?v=dQw4w9WgXcQ  →  data-video="dQw4w9WgXcQ"
-
-    data-image="images/yourimage.jpg"  → image path daalo
-    data-title="Card Title"
-    data-desc="Description"
-    data-cat="Category Name"
-    ══════════════════════════════════════════════
-  -->
+  <!-- Portfolio Preview -->
   <div class="port-home">
     <div class="port-header-row">
       <h2>Portfolio</h2>
@@ -612,7 +715,6 @@ footer{
     </div>
     <div class="port-cards" id="homePortCards">
 
-      <!-- CARD 1: 2D News Anchor Animation — video hai toh data-video mein YouTube ID daalo, nahi hai toh data-image rakho -->
       <div class="pc" data-cat="anim"
            data-video="https://drive.google.com/file/d/1BalwpshW0RhHOvrkdjAsmskFJo5qV3Ch/preview"
            data-title="2D News Anchor Animation"
@@ -620,13 +722,12 @@ footer{
            data-cat-label="2D Animation"
            onclick="openModal(this)">
         <div class="pc-thumb pct1">
-          <div class="big"><img src="images/img1.PNG" width="400" height="300" alt=""/></div>
+          <div class="big"><img src="images/img1.PNG" alt=""/></div>
           <span class="pc-lbl">2D Animation</span>
         </div>
         <div class="pc-info"><h4>2D News Anchor Animation</h4><span>2d animation</span></div>
       </div>
 
-      <!-- CARD 2: Galaxy Matte Painting — data-video mein YouTube video ID paste karo agar hai -->
       <div class="pc" data-cat="vfx"
            data-video="https://drive.google.com/file/d/1iGX_GuBnitvqy-GIFY7IBmlU6lw2cXxL/preview"
            data-title="Galaxy Matte Painting"
@@ -634,13 +735,12 @@ footer{
            data-cat-label="VFX · Matte Painting"
            onclick="openModal(this)">
         <div class="pc-thumb pct2">
-          <div class="big"><img src="images/img2.PNG" width="400" height="300" alt=""/></div>
+          <div class="big"><img src="images/img2.PNG" alt=""/></div>
           <span class="pc-lbl">VFX</span>
         </div>
         <div class="pc-info"><h4>Galaxy Matte Painting</h4><span>vfx</span></div>
       </div>
 
-      <!-- CARD 3: Business Card -->
       <div class="pc" data-cat="graphic"
            data-image="images/business card 1.jpg"
            data-title="Business Card Design"
@@ -648,13 +748,12 @@ footer{
            data-cat-label="Graphic Design"
            onclick="openModal(this)">
         <div class="pc-thumb pct3">
-          <div class="big"><img src="images/business card 1.jpg" width="400" height="300" alt=""/></div>
+          <div class="big"><img src="images/business card 1.jpg" alt=""/></div>
           <span class="pc-lbl">Graphic Design</span>
         </div>
         <div class="pc-info"><h4>Business Card Design</h4><span>graphic design</span></div>
       </div>
 
-      <!-- CARD 4: Ad Motion Graphics -->
       <div class="pc" data-cat="motion"
            data-video="https://drive.google.com/file/d/1RyXpoTx4kcNNO_oA-SfSU-aK4YZ_gz3M/preview"
            data-title="Ad Motion Graphics"
@@ -662,7 +761,7 @@ footer{
            data-cat-label="Motion Graphics"
            onclick="openModal(this)">
         <div class="pc-thumb pct4">
-          <div class="big"><img src="images/img4.PNG" width="400" height="300" alt=""/></div>
+          <div class="big"><img src="images/img4.PNG" alt=""/></div>
           <span class="pc-lbl">Motion Graphics</span>
         </div>
         <div class="pc-info"><h4>Ad Motion Graphics</h4><span>motion graphics</span></div>
@@ -674,16 +773,12 @@ footer{
   <!-- About Brief -->
   <div class="about-home">
     <div class="ah-char">
-      <div class="char-figure"><img src="images/avatar1.png" width="350" height="610" alt=""/></div>
+      <div class="char-figure"><img src="images/avatar1.png" alt="Divyanshi"/></div>
       <div class="char-glow-ring"></div>
     </div>
     <div class="ah-text">
-      <h2 class="ah-sec-title" style="text-align:left;margin-bottom:1.5rem;">About Me</h2>
-      <p>I' am Divyanshi Sharma, a passionate 2d<br><br>
-      animator, motion designer and vfx artist<br><br>
-      with a love for creating visuals that tells<br><br>
-      compelling stories. i help brands, creators<br><br>
-      transform ideas into engaging experiences.</p>
+      <h2 style="margin-bottom:1rem;">About Me</h2>
+      <p>I'm Divyanshi Sharma, a passionate 2D animator, motion designer and VFX artist with a love for creating visuals that tell compelling stories. I help brands and creators transform ideas into engaging experiences.</p>
     </div>
   </div>
 
@@ -735,32 +830,18 @@ footer{
     <div class="form-ok" id="homeFormOk">
       <div class="ok-icon">✦</div>
       <h3>Message Received!</h3>
-      <p>You will get response within 24 hours.</p>
+      <p>You will get a response within 24 hours.</p>
     </div>
   </div>
 
   <footer>
-    <div class="footer-logo"><img src="images/ds logo (1).png" width="200" height="80" alt=""/></div>
+    <div class="footer-logo"><img src="images/ds logo (1).png" alt="Logo"/></div>
     <div class="footer-copy">| &copy; 2026 <span>Divyanshi Sharma</span>. All Rights Reserved</div>
     <div class="footer-socials">
       <span>Follow Me |</span>
-      <!--
-        ══════════════════════════════════════════
-        SOCIAL MEDIA LINKS — Yahan apna URL paste karo
-        LinkedIn  → href="https://linkedin.com/in/AAPKA-PROFILE"
-        YouTube   → href="https://youtube.com/@AAPKA-CHANNEL"
-        Behance   → href="https://behance.net/AAPKA-PROFILE"
-        ══════════════════════════════════════════
-      -->
-      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn">
-        <img src="images/icon2.PNG" width="30" height="30" alt="LinkedIn"/>
-      </a>
-      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube">
-        <img src="images/icon3.png" width="30" height="30" alt="YouTube"/>
-      </a>
-      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance">
-        <img src="images/icon4.png" width="30" height="30" alt="Behance"/>
-      </a>
+      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" alt="LinkedIn"/></a>
+      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" alt="YouTube"/></a>
+      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" alt="Behance"/></a>
     </div>
   </footer>
 </div>
@@ -780,41 +861,53 @@ footer{
         <div class="sec-label">Detailed Introduction</div>
         <h3>Who I Am</h3>
         <p>I'm <strong style="color:#fff">Divyanshi Sharma</strong>, a passionate 2D animator, motion designer, and VFX artist with a love for creating visuals that tell compelling stories. I help brands, creators, and startups transform ideas into engaging visual experiences through the full power of Adobe's creative ecosystem.</p>
-        <p style="margin-top:.9rem;">From crafting brand identities for airlines and fashion labels to animating stories that earn college recognition, I bring a meticulous eye for detail and vibrant creative vision to every single project.</p>
+        <p style="margin-top:.8rem;">From crafting brand identities for airlines and fashion labels to animating stories that earn college recognition, I bring a meticulous eye for detail and vibrant creative vision to every project.</p>
       </div>
+
       <div class="about-block">
         <div class="sec-label">Academic Qualification</div>
         <div class="tl">
-          <div class="tl-item"><div class="tl-yr">2022</div><div class="tl-ti">12th Standard — Higher Secondary · 68%</div><div class="tl-de">Completed 12th grade with 68% aggregate marks, the academic stepping stone for creative arts.</div></div>
+          <div class="tl-item"><div class="tl-yr">2022</div><div class="tl-ti">12th Standard — Higher Secondary · 68%</div><div class="tl-de">Completed 12th grade with 68% aggregate marks.</div></div>
           <div class="tl-item"><div class="tl-yr">2025</div><div class="tl-ti">Graduate</div><div class="tl-de">Graduated with academic excellence, laying the foundation for a creative career in design and visual media.</div></div>
         </div>
       </div>
+
       <div class="about-block">
         <div class="sec-label">Technical Qualification</div>
         <div class="tl">
-          <div class="tl-item"><div class="tl-yr">Expert</div><div class="tl-ti">Graphic Design &amp; Logo Design</div><div class="tl-de">Advanced proficiency in creating brand identities, logos, and print-ready design using Adobe Illustrator &amp; InDesign.</div></div>
-          <div class="tl-item"><div class="tl-yr">Advanced</div><div class="tl-ti">2D Animation &amp; Video Editing</div><div class="tl-de">Character animation, frame-by-frame techniques, lip sync, and professional video editing using Adobe Animate &amp; Premiere Pro.</div></div>
-          <div class="tl-item"><div class="tl-yr">Proficient</div><div class="tl-ti">VFX, Compositing &amp; Motion Graphics</div><div class="tl-de">Visual effects compositing, matte painting, and motion graphics production using Adobe After Effects.</div></div>
+          <div class="tl-item"><div class="tl-yr">Expert</div><div class="tl-ti">Graphic Design &amp; Logo Design</div><div class="tl-de">Advanced proficiency in brand identities, logos, and print-ready design using Adobe Illustrator &amp; InDesign.</div></div>
+          <div class="tl-item"><div class="tl-yr">Advanced</div><div class="tl-ti">2D Animation &amp; Video Editing</div><div class="tl-de">Character animation, frame-by-frame, lip sync using Adobe Animate &amp; Premiere Pro.</div></div>
+          <div class="tl-item"><div class="tl-yr">Proficient</div><div class="tl-ti">VFX, Compositing &amp; Motion Graphics</div><div class="tl-de">Visual effects, matte painting and motion graphics using Adobe After Effects.</div></div>
         </div>
       </div>
+
       <div class="about-block">
-        <div class="sec-label">Personal Project</div>
+        <div class="sec-label">Personal Projects</div>
         <div class="tl">
-          <div class="tl-item"><div class="tl-yr">2025 · Personal Project</div><div class="tl-ti">Airlines Brand — Logo Design</div><div class="tl-de">Complete logo &amp; visual identity for an airlines brand — trust, speed, and sky in every design element.</div></div>
-          <div class="tl-item"><div class="tl-yr">2025 · Personal Project</div><div class="tl-ti">Heels Fashion Brand — Business Card Design</div><div class="tl-de">Elegant, fashion-forward Business card for a luxury heels brand — refined typography meets bold feminine energy.</div></div>
-          <div class="tl-item"><div class="tl-yr">2025 · Personal Project</div><div class="tl-ti">Cheese Brand — Logo Design</div><div class="tl-de">Warm, artisan-inspired logo for a premium cheese brand communicating quality, taste, and authenticity.</div></div>
-          <div class="tl-item"><div class="tl-yr">2026 · College</div><div class="tl-ti">2D Animated Film — Film Making Process</div><div class="tl-de">Original 2D animated short film — character design, storytelling, frame-by-frame. Awarded Outstanding Performance Certificate.</div></div>
+          <div class="tl-item"><div class="tl-yr">2025 · Personal Project</div><div class="tl-ti">Airlines Brand — Logo Design</div><div class="tl-de">Complete logo &amp; visual identity for an airlines brand.</div></div>
+          <div class="tl-item"><div class="tl-yr">2025 · Personal Project</div><div class="tl-ti">Heels Fashion Brand — Business Card Design</div><div class="tl-de">Elegant business card for a luxury heels brand.</div></div>
+          <div class="tl-item"><div class="tl-yr">2025 · Personal Project</div><div class="tl-ti">Cheese Brand — Logo Design</div><div class="tl-de">Warm, artisan-inspired logo for a premium cheese brand.</div></div>
+          <div class="tl-item"><div class="tl-yr">2026 · College</div><div class="tl-ti">2D Animated Film — Film Making Process</div><div class="tl-de">Original 2D animated short film. Awarded Outstanding Performance Certificate.</div></div>
         </div>
       </div>
+
       <div class="about-block">
         <div class="sec-label">Achievements</div>
         <div class="tl">
-          <div class="tl-item"onclick="openModal(this)"
-
-         data-image="images/certificate.JPG"><div class="tl-yr">Certificate</div><div class="tl-ti">Outstanding Performance — 2D Animation Film Making</div><div class="tl-de">Certificate for outstanding performance in the 2D Animation Film Making Process, demonstrating mastery in visual storytelling.</div></div>
+          <div class="tl-item"
+               onclick="openModal(this)"
+               data-image="images/certificate.JPG"
+               data-title="Outstanding Performance Certificate"
+               data-desc="Certificate for outstanding performance in the 2D Animation Film Making Process."
+               data-cat-label="Achievement · Certificate">
+            <div class="tl-yr">Certificate  <span style="color:var(--muted);font-size:.6rem;">(click to view)</span></div>
+            <div class="tl-ti">Outstanding Performance — 2D Animation Film Making</div>
+            <div class="tl-de">Awarded for demonstrating mastery in visual storytelling and animation craft.</div>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="info-col">
       <div class="icard">
         <div class="icard-h">Personal Details</div>
@@ -842,9 +935,9 @@ footer{
         </div>
       </div>
       <div class="icard">
-        <div class="icard-h">Projects (2025)</div>
+        <div class="icard-h">Projects (2025–26)</div>
         <div class="irow"><span class="ir-l">Airlines Logo</span><span class="ir-r">Personal Project</span></div>
-        <div class="irow"><span class="ir-l">Heels Brand Business Card</span><span class="ir-r">Personal Project</span></div>
+        <div class="irow"><span class="ir-l">Heels Brand Card</span><span class="ir-r">Personal Project</span></div>
         <div class="irow"><span class="ir-l">Cheese Brand Logo</span><span class="ir-r">Personal Project</span></div>
         <div class="irow"><span class="ir-l">2D Animation Film</span><span class="ir-r">College · Award</span></div>
       </div>
@@ -865,13 +958,13 @@ footer{
   </div>
 
   <footer>
-    <div class="footer-logo"><img src="images/ds logo (1).png" width="200" height="80" alt=""/></div>
+    <div class="footer-logo"><img src="images/ds logo (1).png" alt="Logo"/></div>
     <div class="footer-copy">| &copy; 2026 <span>Divyanshi Sharma</span>. All Rights Reserved</div>
     <div class="footer-socials">
       <span>Follow Me |</span>
-      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" width="30" height="30" alt="LinkedIn"/></a>
-      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" width="30" height="30" alt="YouTube"/></a>
-      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" width="30" height="30" alt="Behance"/></a>
+      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" alt="LinkedIn"/></a>
+      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" alt="YouTube"/></a>
+      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" alt="Behance"/></a>
     </div>
   </footer>
 </div>
@@ -885,22 +978,6 @@ footer{
     </div>
   </div>
 
-  <!--
-    ══════════════════════════════════════════════════════════
-    PORTFOLIO CARDS — Video ya Image kaise add karein:
-
-    Agar YouTube video hai:
-      data-video="VIDEO_ID_YAHAN"
-      Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-      →  data-video="dQw4w9WgXcQ"   (sirf ID, pura link nahi)
-
-    Agar sirf image dikhani hai:
-      data-image="images/aapki-image.jpg"
-
-    Dono bhi ho sakti hain — pehle video chalega, image backup ke liye
-    ══════════════════════════════════════════════════════════
-  -->
-
   <div class="port-main">
     <div class="tab-bar">
       <button class="tab-btn on" onclick="showTab('tall',this)">All</button>
@@ -910,256 +987,129 @@ footer{
       <button class="tab-btn" onclick="showTab('tvfx',this)">VFX</button>
     </div>
 
-    <!-- ALL TAB -->
+    <!-- ALL -->
     <div class="tab-panel on" id="tall">
-
-      <!-- 2D Animation Film — VIDEO hai? data-video mein YouTube ID daalo -->
-      <div class="pcard"
-           data-video="https://drive.google.com/file/d/1WklyJFdtkB9p_Q_KmgiiewT-Q6ttGyde/preview"
-           data-image="images/poster.png"
-           data-title="2D Animation Film"
-           data-desc="Character animation — fluid motion, lip sync, and professional studio setting. Award project."
-           data-cat-label="2D Animation · College"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv1">
-          <span class="big"><img src="images/poster.png" width="300" height="300" alt=""/></span>
-          <span class="chip">2D Animation</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">2D Animation · College</div>
-          <div class="pcard-ti">2D Animation Film</div>
-          <div class="pcard-de">Character animation — fluid motion, lip sync, and professional studio setting.</div>
-          <div class="pcard-yr">2025 · Award Project</div>
-        </div>
+      <div class="pcard" data-video="https://drive.google.com/file/d/1WklyJFdtkB9p_Q_KmgiiewT-Q6ttGyde/preview" data-image="images/poster.png" data-title="2D Animation Film" data-desc="Character animation — fluid motion, lip sync, and professional studio setting. Award project." data-cat-label="2D Animation · College" onclick="openModal(this)">
+        <div class="pcard-vis pv1"><span class="big"><img src="images/poster.png" alt=""/></span><span class="chip">2D Animation</span></div>
+        <div class="pcard-info"><div class="pcard-cat">2D Animation · College</div><div class="pcard-ti">2D Animation Film</div><div class="pcard-de">Character animation — fluid motion, lip sync, professional studio setting.</div><div class="pcard-yr">2025 · Award Project</div></div>
       </div>
-
-      <!-- Galaxy Matte Painting — VIDEO hai? -->
-      <div class="pcard"
-           data-video="https://drive.google.com/file/d/1iGX_GuBnitvqy-GIFY7IBmlU6lw2cXxL/preview"
-           data-image="images/img2.PNG"
-           data-title="Galaxy Matte Painting"
-           data-desc="Atmospheric space environment created using compositing and matte painting in After Effects."
-           data-cat-label="VFX · Matte Painting"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv2">
-          <span class="big"><img src="images/img2.PNG" width="400" height="300" alt=""/></span>
-          <span class="chip">VFX</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">VFX · Matte Painting</div>
-          <div class="pcard-ti">Galaxy Matte Painting</div>
-          <div class="pcard-de">Atmospheric space environment via compositing and matte painting in After Effects.</div>
-          <div class="pcard-yr">2025</div>
-        </div>
+      <div class="pcard" data-video="https://drive.google.com/file/d/1iGX_GuBnitvqy-GIFY7IBmlU6lw2cXxL/preview" data-image="images/img2.PNG" data-title="Galaxy Matte Painting" data-desc="Atmospheric space environment created using compositing and matte painting in After Effects." data-cat-label="VFX · Matte Painting" onclick="openModal(this)">
+        <div class="pcard-vis pv2"><span class="big"><img src="images/img2.PNG" alt=""/></span><span class="chip">VFX</span></div>
+        <div class="pcard-info"><div class="pcard-cat">VFX · Matte Painting</div><div class="pcard-ti">Galaxy Matte Painting</div><div class="pcard-de">Atmospheric space environment via compositing and matte painting.</div><div class="pcard-yr">2025</div></div>
       </div>
-
-      <!-- 2D Car Animation — VIDEO hai? -->
-      <div class="pcard"
-           data-video="https://drive.google.com/file/d/1XgQ4UUZxwDGtoXdud3eB0kFKXbLA2L83/preview"
-           data-image="images/img3.PNG"
-           data-title="2D Car Animation"
-           data-desc="Stylised 2D animated car sequence with dynamic movement across an urban cityscape background."
-           data-cat-label="2D Animation"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv3">
-          <span class="big"><img src="images/img3.PNG" width="400" height="200" alt=""/></span>
-          <span class="chip">2D Animation</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">2D Animation</div>
-          <div class="pcard-ti">2D Car Animation</div>
-          <div class="pcard-de">Stylised 2D animated car sequence with urban cityscape background.</div>
-          <div class="pcard-yr">2025</div>
-        </div>
+      <div class="pcard" data-video="https://drive.google.com/file/d/1XgQ4UUZxwDGtoXdud3eB0kFKXbLA2L83/preview" data-image="images/img3.PNG" data-title="2D Car Animation" data-desc="Stylised 2D animated car sequence with dynamic movement across an urban cityscape background." data-cat-label="2D Animation" onclick="openModal(this)">
+        <div class="pcard-vis pv3"><span class="big"><img src="images/img3.PNG" alt=""/></span><span class="chip">2D Animation</span></div>
+        <div class="pcard-info"><div class="pcard-cat">2D Animation</div><div class="pcard-ti">2D Car Animation</div><div class="pcard-de">Stylised 2D animated car sequence with urban cityscape background.</div><div class="pcard-yr">2025</div></div>
       </div>
-
-      <!-- Ad Motion Graphics (Chocolate) — VIDEO hai? -->
-      <div class="pcard"
-           data-video="https://drive.google.com/file/d/1RyXpoTx4kcNNO_oA-SfSU-aK4YZ_gz3M/preview"
-           data-image="images/img4.PNG"
-           data-title="Ad Motion Graphics — Chocolate Brand"
-           data-desc="High-energy product ad animation for a chocolate brand — vibrant, dynamic, attention-grabbing."
-           data-cat-label="Motion Graphics · Ad"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv4">
-          <span class="big"><img src="images/img4.PNG" width="400" height="300" alt=""/></span>
-          <span class="chip">Motion Graphics</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">Motion Graphics · Ad Personal Project</div>
-          <div class="pcard-ti">Ad Motion Graphics</div>
-          <div class="pcard-de">High-energy product ad animation for a chocolate brand — vibrant, dynamic, attention-grabbing.</div>
-          <div class="pcard-yr">2026</div>
-        </div>
+      <div class="pcard" data-video="https://drive.google.com/file/d/1RyXpoTx4kcNNO_oA-SfSU-aK4YZ_gz3M/preview" data-image="images/img4.PNG" data-title="Ad Motion Graphics — Chocolate Brand" data-desc="High-energy product ad animation for a chocolate brand — vibrant, dynamic, attention-grabbing." data-cat-label="Motion Graphics · Ad" onclick="openModal(this)">
+        <div class="pcard-vis pv4"><span class="big"><img src="images/img4.PNG" alt=""/></span><span class="chip">Motion Graphics</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Motion Graphics · Ad</div><div class="pcard-ti">Ad Motion Graphics</div><div class="pcard-de">High-energy product ad animation for a chocolate brand.</div><div class="pcard-yr">2026</div></div>
       </div>
-
-      <!-- Airlines Brand Identity — Sirf image -->
-      <div class="pcard"
-           data-image="images/Artboard 1.jpg"
-           data-title="Airlines Brand Identity"
-           data-desc="Complete logo &amp; identity for an airlines brand — trust, speed, and sky in every curve."
-           data-cat-label="Logo Design · Personal Project"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv5">
-          <span class="big"><img src="images/Artboard 1.jpg" width="400" height="300" alt=""/></span>
-          <span class="chip">Logo Design</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">Logo Design · Personal Project</div>
-          <div class="pcard-ti">Airlines Brand Identity</div>
-          <div class="pcard-de">Complete logo &amp; identity for an airlines brand — trust, speed, and sky in every curve.</div>
-          <div class="pcard-yr">2025</div>
-        </div>
+      <div class="pcard" data-image="images/Artboard 1.jpg" data-title="Airlines Brand Identity" data-desc="Complete logo &amp; identity for an airlines brand — trust, speed, and sky in every curve." data-cat-label="Logo Design · Personal Project" onclick="openModal(this)">
+        <div class="pcard-vis pv5"><span class="big"><img src="images/Artboard 1.jpg" alt=""/></span><span class="chip">Logo Design</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Logo Design · Personal Project</div><div class="pcard-ti">Airlines Brand Identity</div><div class="pcard-de">Complete logo &amp; identity for an airlines brand.</div><div class="pcard-yr">2025</div></div>
       </div>
-
-      <!-- Heels Fashion Brand Business Card — Sirf image -->
-      <div class="pcard"
-           data-image="images/business card2.jpg"
-           data-title="Heels Fashion Brand — Business Card"
-           data-desc="Refined, feminine Business Card for a luxury heels brand — bold typography meets elegant aesthetic."
-           data-cat-label="Business Card Design · Personal Project"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv6">
-          <span class="big"><img src="images/business card2.jpg" width="400" height="300" alt=""/></span>
-          <span class="chip">Business Card Design</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">Business Card Design · Personal Project</div>
-          <div class="pcard-ti">Heels Fashion Brand</div>
-          <div class="pcard-de">Refined, feminine Business Card for a luxury heels brand.</div>
-          <div class="pcard-yr">2025</div>
-        </div>
+      <div class="pcard" data-image="images/business card2.jpg" data-title="Heels Fashion Brand — Business Card" data-desc="Refined, feminine Business Card for a luxury heels brand — bold typography meets elegant aesthetic." data-cat-label="Business Card Design · Personal Project" onclick="openModal(this)">
+        <div class="pcard-vis pv6"><span class="big"><img src="images/business card2.jpg" alt=""/></span><span class="chip">Business Card</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Business Card Design</div><div class="pcard-ti">Heels Fashion Brand</div><div class="pcard-de">Refined, feminine Business Card for a luxury heels brand.</div><div class="pcard-yr">2025</div></div>
       </div>
-
-      <!-- Cheese Brand Identity — Sirf image -->
-      <div class="pcard"
-           data-image="images/Artboard 1-100.jpg"
-           data-title="Cheese Brand Identity"
-           data-desc="Warm artisan logo for a premium cheese brand — quality, taste, authenticity at a glance."
-           data-cat-label="Logo Design · Personal Project"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv7">
-          <span class="big"><img src="images/Artboard 1-100.jpg" width="400" height="400" alt=""/></span>
-          <span class="chip">Logo Design</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">Logo Design · Personal Project</div>
-          <div class="pcard-ti">Cheese Brand Identity</div>
-          <div class="pcard-de">Warm artisan logo for a premium cheese brand — quality, taste, authenticity at a glance.</div>
-          <div class="pcard-yr">2025</div>
-        </div>
+      <div class="pcard" data-image="images/Artboard 1-100.jpg" data-title="Cheese Brand Identity" data-desc="Warm artisan logo for a premium cheese brand — quality, taste, authenticity at a glance." data-cat-label="Logo Design · Personal Project" onclick="openModal(this)">
+        <div class="pcard-vis pv7"><span class="big"><img src="images/Artboard 1-100.jpg" alt=""/></span><span class="chip">Logo Design</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Logo Design · Personal Project</div><div class="pcard-ti">Cheese Brand Identity</div><div class="pcard-de">Warm artisan logo for a premium cheese brand.</div><div class="pcard-yr">2025</div></div>
       </div>
-
-      <!-- Ad Motion Graphics (Biscuit) — VIDEO hai? -->
-      <div class="pcard"
-           data-video="https://drive.google.com/file/d/1Abn81HzHwj3p6LNPfKHCFgwIkP0skiRW/preview"
-           data-image="images/Screenshot 2026-05-18 195013.png"
-           data-title="Ad Motion Graphics — Biscuit Brand"
-           data-desc="High-energy product ad animation for a Biscuit brand — vibrant, dynamic, attention-grabbing."
-           data-cat-label="Motion Graphics · Ad"
-           onclick="openModal(this)">
-        <div class="pcard-vis pv8">
-          <span class="big"><img src="images/Screenshot 2026-05-18 195013.png" width="400" height="300" alt=""/></span>
-          <span class="chip">Motion Graphics</span>
-        </div>
-        <div class="pcard-info">
-          <div class="pcard-cat">Motion Graphics · Ad Personal Project</div>
-          <div class="pcard-ti">Ad Motion Graphics</div>
-          <div class="pcard-de">High-energy product ad animation for a Biscuit brand — vibrant, dynamic, attention-grabbing.</div>
-          <div class="pcard-yr">2026</div>
-        </div>
+      <div class="pcard" data-video="https://drive.google.com/file/d/1Abn81HzHwj3p6LNPfKHCFgwIkP0skiRW/preview" data-image="images/Screenshot 2026-05-18 195013.png" data-title="Ad Motion Graphics — Biscuit Brand" data-desc="High-energy product ad animation for a Biscuit brand — vibrant, dynamic, attention-grabbing." data-cat-label="Motion Graphics · Ad" onclick="openModal(this)">
+        <div class="pcard-vis pv8"><span class="big"><img src="images/Screenshot 2026-05-18 195013.png" alt=""/></span><span class="chip">Motion Graphics</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Motion Graphics · Ad</div><div class="pcard-ti">Ad Motion Graphics</div><div class="pcard-de">High-energy product ad animation for a Biscuit brand.</div><div class="pcard-yr">2026</div></div>
       </div>
-
     </div>
 
-    <!-- GRAPHIC DESIGN TAB -->
+    <!-- GRAPHIC DESIGN -->
     <div class="tab-panel" id="tlogo">
       <div class="pcard" data-image="images/Artboard 1.jpg" data-title="Airlines Brand Identity" data-desc="Complete logo &amp; visual identity for an airlines brand." data-cat-label="Logo Design · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv5"><span class="big"><img src="images/Artboard 1.jpg" width="400" height="300" alt=""/></span><span class="chip">Logo Design</span></div>
+        <div class="pcard-vis pv5"><span class="big"><img src="images/Artboard 1.jpg" alt=""/></span><span class="chip">Logo Design</span></div>
         <div class="pcard-info"><div class="pcard-cat">Logo Design · Personal Project</div><div class="pcard-ti">Airlines Brand Identity</div><div class="pcard-de">Complete logo &amp; visual identity for an airlines brand.</div><div class="pcard-yr">2025</div></div>
       </div>
-      <div class="pcard" data-image="images/landscape 1.jpg" data-title="Landscape Design" data-desc="A modern landscape design, graphically designed to convey a calm and relaxing atmosphere." data-cat-label="Landscape Design · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv6"><span class="big"><img src="images/landscape 1.jpg" width="400" height="300" alt=""/></span><span class="chip">Landscape Design</span></div>
-        <div class="pcard-info"><div class="pcard-cat">Landscape Design · Personal Project</div><div class="pcard-ti">Design</div><div class="pcard-de">A modern landscape design conveying a calm and relaxing atmosphere.</div><div class="pcard-yr">2025</div></div>
+      <div class="pcard" data-image="images/landscape 1.jpg" data-title="Landscape Design" data-desc="A modern landscape design conveying a calm and relaxing atmosphere." data-cat-label="Landscape Design · Personal Project" onclick="openModal(this)">
+        <div class="pcard-vis pv6"><span class="big"><img src="images/landscape 1.jpg" alt=""/></span><span class="chip">Landscape Design</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Landscape Design · Personal Project</div><div class="pcard-ti">Landscape Design</div><div class="pcard-de">A modern landscape design conveying a calm atmosphere.</div><div class="pcard-yr">2025</div></div>
       </div>
-      <div class="pcard" data-image="images/game background.jpg" data-title="Game Background Design" data-desc="This design helps create a happy and engaging atmosphere for players, especially children." data-cat-label="Game Background Design · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv7"><span class="big"><img src="images/game background.jpg" width="400" height="300" alt=""/></span><span class="chip">Game Background Design</span></div>
-        <div class="pcard-info"><div class="pcard-cat">Game Background Design · Personal Project</div><div class="pcard-ti">Background Design</div><div class="pcard-de">Happy and engaging atmosphere for players, especially children.</div><div class="pcard-yr">2025</div></div>
+      <div class="pcard" data-image="images/game background.jpg" data-title="Game Background Design" data-desc="Happy and engaging atmosphere for players, especially children." data-cat-label="Game Background · Personal Project" onclick="openModal(this)">
+        <div class="pcard-vis pv7"><span class="big"><img src="images/game background.jpg" alt=""/></span><span class="chip">Game Background</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Game Background Design</div><div class="pcard-ti">Background Design</div><div class="pcard-de">Happy and engaging atmosphere for players, especially children.</div><div class="pcard-yr">2025</div></div>
       </div>
       <div class="pcard" data-image="images/Artboard2.jpg" data-title="Heels Fashion Brand — Logo" data-desc="Elegant, feminine logo for a luxury heels brand." data-cat-label="Logo Design · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv6"><span class="big"><img src="images/Artboard2.jpg" width="300" height="300" alt=""/></span><span class="chip">Logo Design</span></div>
+        <div class="pcard-vis pv6"><span class="big"><img src="images/Artboard2.jpg" alt=""/></span><span class="chip">Logo Design</span></div>
         <div class="pcard-info"><div class="pcard-cat">Logo Design · Personal Project</div><div class="pcard-ti">Heels Fashion Brand</div><div class="pcard-de">Elegant, feminine logo for a luxury heels brand.</div><div class="pcard-yr">2025</div></div>
       </div>
-      <div class="pcard" data-image="images/business card 1.jpg" data-title="Airlines Business Card" data-desc="Complete business card for an airlines brand — professional and bold." data-cat-label="Business Card Design · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv5"><span class="big"><img src="images/business card 1.jpg" width="500" height="300" alt=""/></span><span class="chip">Business Card</span></div>
-        <div class="pcard-info"><div class="pcard-cat">Business Card Design · Personal Project</div><div class="pcard-ti">Airlines Brand Identity</div><div class="pcard-de">Complete business card for an airlines brand.</div><div class="pcard-yr">2025</div></div>
+      <div class="pcard" data-image="images/business card 1.jpg" data-title="Airlines Business Card" data-desc="Complete business card for an airlines brand." data-cat-label="Business Card Design · Personal Project" onclick="openModal(this)">
+        <div class="pcard-vis pv5"><span class="big"><img src="images/business card 1.jpg" alt=""/></span><span class="chip">Business Card</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Business Card Design</div><div class="pcard-ti">Airlines Brand Card</div><div class="pcard-de">Complete business card for an airlines brand.</div><div class="pcard-yr">2025</div></div>
       </div>
       <div class="pcard" data-image="images/business card3.jpg" data-title="Cheese Brand Business Card" data-desc="Warm artisan Business Card for a premium cheese brand." data-cat-label="Business Card Design · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv7"><span class="big"><img src="images/business card3.jpg" width="500" height="300" alt=""/></span><span class="chip">Business Card</span></div>
-        <div class="pcard-info"><div class="pcard-cat">Business Card Design · Personal Project</div><div class="pcard-ti">Cheese Brand Identity</div><div class="pcard-de">Warm artisan Business Card for a premium cheese brand.</div><div class="pcard-yr">2025</div></div>
+        <div class="pcard-vis pv7"><span class="big"><img src="images/business card3.jpg" alt=""/></span><span class="chip">Business Card</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Business Card Design</div><div class="pcard-ti">Cheese Brand Card</div><div class="pcard-de">Warm artisan Business Card for a premium cheese brand.</div><div class="pcard-yr">2025</div></div>
       </div>
     </div>
 
-    <!-- 2D ANIMATION TAB -->
+    <!-- 2D ANIMATION -->
     <div class="tab-panel" id="tanim">
       <div class="pcard" data-video="https://drive.google.com/file/d/1WklyJFdtkB9p_Q_KmgiiewT-Q6ttGyde/preview" data-image="images/poster.png" data-title="2D Animation Film" data-desc="Character animation — fluid motion, lip sync, professional studio setting. Award project." data-cat-label="2D Animation · College" onclick="openModal(this)">
-        <div class="pcard-vis pv1"><span class="big"><img src="images/poster.png" width="300" height="300" alt=""/></span><span class="chip">2D Animation</span></div>
-        <div class="pcard-info"><div class="pcard-cat">2D Animation · College</div><div class="pcard-ti">2D Animation Film</div><div class="pcard-de">Character animation — fluid motion, lip sync, professional studio setting. Award project.</div><div class="pcard-yr">2026 · Award</div></div>
+        <div class="pcard-vis pv1"><span class="big"><img src="images/poster.png" alt=""/></span><span class="chip">2D Animation</span></div>
+        <div class="pcard-info"><div class="pcard-cat">2D Animation · College</div><div class="pcard-ti">2D Animation Film</div><div class="pcard-de">Character animation — fluid motion, lip sync. Award project.</div><div class="pcard-yr">2026 · Award</div></div>
       </div>
       <div class="pcard" data-video="https://drive.google.com/file/d/1XgQ4UUZxwDGtoXdud3eB0kFKXbLA2L83/preview" data-image="images/img3.PNG" data-title="2D Car Animation" data-desc="Stylised 2D animated car sequence with urban cityscape background." data-cat-label="2D Animation · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv3"><span class="big"><img src="images/img3.PNG" width="400" height="200" alt=""/></span><span class="chip">2D Animation</span></div>
+        <div class="pcard-vis pv3"><span class="big"><img src="images/img3.PNG" alt=""/></span><span class="chip">2D Animation</span></div>
         <div class="pcard-info"><div class="pcard-cat">2D Animation · Personal Project</div><div class="pcard-ti">2D Car Animation</div><div class="pcard-de">Stylised 2D animated car sequence with urban cityscape background.</div><div class="pcard-yr">2025</div></div>
       </div>
       <div class="pcard" data-video="https://drive.google.com/file/d/1BalwpshW0RhHOvrkdjAsmskFJo5qV3Ch/preview" data-image="images/img1.PNG" data-title="2D News Anchor Animation" data-desc="2D News Anchor animation — fluid motion, lip sync, professional studio setting." data-cat-label="2D Animation · Personal Project" onclick="openModal(this)">
-        <div class="pcard-vis pv1"><span class="big"><img src="images/img1.PNG" width="400" height="300" alt=""/></span><span class="chip">2D Animation</span></div>
-        <div class="pcard-info"><div class="pcard-cat">2D Animation News Anchor · Personal Project</div><div class="pcard-ti">2D Animation</div><div class="pcard-de">2D News Anchor animation — fluid motion, lip sync, professional studio setting.</div><div class="pcard-yr">2025</div></div>
+        <div class="pcard-vis pv1"><span class="big"><img src="images/img1.PNG" alt=""/></span><span class="chip">2D Animation</span></div>
+        <div class="pcard-info"><div class="pcard-cat">2D Animation · Personal Project</div><div class="pcard-ti">2D News Anchor Animation</div><div class="pcard-de">2D News Anchor animation — fluid motion, lip sync, professional studio setting.</div><div class="pcard-yr">2025</div></div>
       </div>
     </div>
 
-    <!-- MOTION GRAPHICS TAB -->
+    <!-- MOTION GRAPHICS -->
     <div class="tab-panel" id="tmotion">
       <div class="pcard" data-video="https://drive.google.com/file/d/1RyXpoTx4kcNNO_oA-SfSU-aK4YZ_gz3M/preview" data-image="images/img4.PNG" data-title="Ad Motion Graphics — Chocolate Brand" data-desc="High-energy product ad animation — vibrant, dynamic, attention-grabbing." data-cat-label="Motion Graphics · Ad" onclick="openModal(this)">
-        <div class="pcard-vis pv4"><span class="big"><img src="images/img4.PNG" width="400" height="300" alt=""/></span><span class="chip">Motion Graphics</span></div>
+        <div class="pcard-vis pv4"><span class="big"><img src="images/img4.PNG" alt=""/></span><span class="chip">Motion Graphics</span></div>
         <div class="pcard-info"><div class="pcard-cat">Motion Graphics · Ad</div><div class="pcard-ti">Ad Motion Graphics</div><div class="pcard-de">High-energy product ad animation — vibrant, dynamic, attention-grabbing.</div><div class="pcard-yr">2026</div></div>
       </div>
       <div class="pcard" data-video="https://drive.google.com/file/d/1Abn81HzHwj3p6LNPfKHCFgwIkP0skiRW/preview" data-image="images/Screenshot 2026-05-18 195013.png" data-title="Ad Motion Graphics — Biscuit Brand" data-desc="High-energy product ad animation for a Biscuit brand — vibrant, dynamic, attention-grabbing." data-cat-label="Motion Graphics · Ad" onclick="openModal(this)">
-        <div class="pcard-vis pv8"><span class="big"><img src="images/Screenshot 2026-05-18 195013.png" width="400" height="300" alt=""/></span><span class="chip">Motion Graphics</span></div>
-        <div class="pcard-info"><div class="pcard-cat">Motion Graphics · Ad</div><div class="pcard-ti">Ad Motion Graphics</div><div class="pcard-de">High-energy product ad animation for a Biscuit brand — vibrant, dynamic, attention-grabbing.</div><div class="pcard-yr">2026</div></div>
+        <div class="pcard-vis pv8"><span class="big"><img src="images/Screenshot 2026-05-18 195013.png" alt=""/></span><span class="chip">Motion Graphics</span></div>
+        <div class="pcard-info"><div class="pcard-cat">Motion Graphics · Ad</div><div class="pcard-ti">Ad Motion Graphics</div><div class="pcard-de">High-energy product ad animation for a Biscuit brand.</div><div class="pcard-yr">2026</div></div>
       </div>
     </div>
 
-    <!-- VFX TAB -->
+    <!-- VFX -->
     <div class="tab-panel" id="tvfx">
       <div class="pcard" data-video="https://drive.google.com/file/d/1iGX_GuBnitvqy-GIFY7IBmlU6lw2cXxL/preview" data-image="images/img2.PNG" data-title="Galaxy Matte Painting" data-desc="Atmospheric space environment via compositing and matte painting in After Effects." data-cat-label="VFX · Matte Painting" onclick="openModal(this)">
-        <div class="pcard-vis pv2"><span class="big"><img src="images/img2.PNG" width="400" height="300" alt=""/></span><span class="chip">VFX</span></div>
-        <div class="pcard-info"><div class="pcard-cat">VFX · Matte Painting</div><div class="pcard-ti">Galaxy Matte Painting</div><div class="pcard-de">Atmospheric space environment via compositing and matte painting in After Effects.</div><div class="pcard-yr">2026</div></div>
+        <div class="pcard-vis pv2"><span class="big"><img src="images/img2.PNG" alt=""/></span><span class="chip">VFX</span></div>
+        <div class="pcard-info"><div class="pcard-cat">VFX · Matte Painting</div><div class="pcard-ti">Galaxy Matte Painting</div><div class="pcard-de">Atmospheric space environment via compositing and matte painting.</div><div class="pcard-yr">2026</div></div>
       </div>
-      <div class="pcard" data-video="https://drive.google.com/file/d/1VsmG9Kq9_8slGTwIIB0HtePDjzufyn8H/preview" data-image="images/dairy milk.jpg" data-title="Double Role Ad — VFX" data-desc="Advertising project featuring a double role played by the same actor, brought to life through VFX and compositing in Adobe After Effects." data-cat-label="VFX · Double Role Ad" onclick="openModal(this)">
-        <div class="pcard-vis pv2"><span class="big"><img src="images/dairy milk.jpg" width="300" height="300" alt=""/></span><span class="chip">VFX</span></div>
-        <div class="pcard-info"><div class="pcard-cat">VFX · Double Role Ad</div><div class="pcard-ti">Double Role Ad</div><div class="pcard-de">Double role ad brought to life through precise VFX and compositing in After Effects.</div><div class="pcard-yr">2026</div></div>
+      <div class="pcard" data-video="https://drive.google.com/file/d/1VsmG9Kq9_8slGTwIIB0HtePDjzufyn8H/preview" data-image="images/dairy milk.jpg" data-title="Double Role Ad — VFX" data-desc="Double role ad brought to life through precise VFX and compositing in After Effects." data-cat-label="VFX · Double Role Ad" onclick="openModal(this)">
+        <div class="pcard-vis pv2"><span class="big"><img src="images/dairy milk.jpg" alt=""/></span><span class="chip">VFX</span></div>
+        <div class="pcard-info"><div class="pcard-cat">VFX · Double Role Ad</div><div class="pcard-ti">Double Role Ad</div><div class="pcard-de">Double role ad brought to life through precise VFX and compositing.</div><div class="pcard-yr">2026</div></div>
       </div>
     </div>
-
   </div>
 
   <!-- Testimonials -->
   <div class="testi-wrap">
     <h2 class="sec-title" style="text-align:left;">Client Testimonials</h2>
     <div class="testi-grid">
-      <div class="tc"><div class="tc-q">"</div><div class="tc-stars">★★★★★</div><div class="tc-text">Divyanshi crafted the perfect logo for our airline. She understood our brand vision and delivered a mark that we're incredibly proud to fly with. Truly outstanding creative work!</div><div class="tc-name">Arjun Mehta</div><div class="tc-role">Brand Manager · Airlines Client</div></div>
+      <div class="tc"><div class="tc-q">"</div><div class="tc-stars">★★★★★</div><div class="tc-text">Divyanshi crafted the perfect logo for our airline. She understood our brand vision and delivered a mark we're proud to fly with. Truly outstanding creative work!</div><div class="tc-name">Arjun Mehta</div><div class="tc-role">Brand Manager · Airlines Client</div></div>
       <div class="tc"><div class="tc-q">"</div><div class="tc-stars">★★★★★</div><div class="tc-text">Working with Divyanshi on our heels brand was brilliant. She has a refined eye for aesthetics and delivered a logo that feels luxurious, modern, and completely represents us.</div><div class="tc-name">Priya Khanna</div><div class="tc-role">Founder · Heels Fashion Brand</div></div>
-      <div class="tc"><div class="tc-q">"</div><div class="tc-stars">★★★★★</div><div class="tc-text">Our cheese brand needed something warm and memorable. Divyanshi's logo captured the essence of artisan quality instantly. We've received so many compliments since the launch!</div><div class="tc-name">Rohan Desai</div><div class="tc-role">Owner · Cheese Brand</div></div>
+      <div class="tc"><div class="tc-q">"</div><div class="tc-stars">★★★★★</div><div class="tc-text">Our cheese brand needed something warm and memorable. Divyanshi's logo captured the essence of artisan quality instantly. So many compliments since launch!</div><div class="tc-name">Rohan Desai</div><div class="tc-role">Owner · Cheese Brand</div></div>
     </div>
   </div>
 
   <footer>
-    <div class="footer-logo"><img src="images/ds logo (1).png" width="200" height="80" alt=""/></div>
+    <div class="footer-logo"><img src="images/ds logo (1).png" alt="Logo"/></div>
     <div class="footer-copy">| &copy; 2026 <span>Divyanshi Sharma</span>. All Rights Reserved</div>
     <div class="footer-socials">
       <span>Follow Me |</span>
-      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" width="30" height="30" alt="LinkedIn"/></a>
-      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" width="30" height="30" alt="YouTube"/></a>
-      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" width="30" height="30" alt="Behance"/></a>
+      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" alt="LinkedIn"/></a>
+      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" alt="YouTube"/></a>
+      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" alt="Behance"/></a>
     </div>
   </footer>
 </div>
@@ -1177,11 +1127,11 @@ footer{
     <div class="contact-form-area">
       <div class="cf-title">Let's Create Something Amazing</div>
       <div id="cfWrap">
-        <div class="cf-grid" style="margin-bottom:1.1rem;">
+        <div class="cf-grid" style="margin-bottom:1rem;">
           <div class="cf-row" style="margin-bottom:0"><label>Name</label><input class="cf-inp" placeholder="Your Full Name" id="cf-n"></div>
-          <div class="cf-row" style="margin-bottom:0"><label>Email</label><input class="cf-inp" placeholder="Your Email" id="cf-e"></div>
+          <div class="cf-row" style="margin-bottom:0"><label>Email</label><input class="cf-inp" placeholder="your@email.com" id="cf-e"></div>
         </div>
-        <div class="cf-grid" style="margin-bottom:1.1rem;">
+        <div class="cf-grid" style="margin-bottom:1rem;">
           <div class="cf-row" style="margin-bottom:0"><label>Contact No.</label><input class="cf-inp" placeholder="Contact Number" id="cf-p"></div>
           <div class="cf-row" style="margin-bottom:0"><label>Project Type</label>
             <select class="cf-inp" id="cf-t">
@@ -1194,9 +1144,9 @@ footer{
         </div>
         <div class="cf-row"><label>Subject</label><input class="cf-inp" placeholder="Project Enquiry / Collaboration" id="cf-s"></div>
         <div class="cf-row"><label>Message</label><textarea class="cf-inp cf-ta" placeholder="Tell me about your project, timeline, and budget..." id="cf-m"></textarea></div>
-        <button class="cf-submit" onclick="submitCF()">Start Your Project </button>
+        <button class="cf-submit" onclick="submitCF()">Start Your Project →</button>
       </div>
-      <div class="form-ok" id="cfOk"><div class="ok-icon">✦</div><h3>Message Sent!</h3><p>You will get response within 24 hours.</p></div>
+      <div class="form-ok" id="cfOk"><div class="ok-icon">✦</div><h3>Message Sent!</h3><p>You will get a response within 24 hours.</p></div>
     </div>
 
     <div class="contact-info-area">
@@ -1210,29 +1160,46 @@ footer{
   </div>
 
   <footer>
-    <div class="footer-logo"><img src="images/ds logo (1).png" width="200" height="80" alt=""/></div>
+    <div class="footer-logo"><img src="images/ds logo (1).png" alt="Logo"/></div>
     <div class="footer-copy">| &copy; 2026 <span>Divyanshi Sharma</span>. All Rights Reserved</div>
     <div class="footer-socials">
       <span>Follow Me |</span>
-      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" width="30" height="30" alt="LinkedIn"/></a>
-      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" width="30" height="30" alt="YouTube"/></a>
-      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" width="30" height="30" alt="Behance"/></a>
+      <a class="soc-icon si-li" href="https://linkedin.com/in/divyanshi-sharma-0b838a3a5" target="_blank" title="LinkedIn"><img src="images/icon2.PNG" alt="LinkedIn"/></a>
+      <a class="soc-icon si-yt" href="https://youtube.com/@DivyanshiArtandMotion" target="_blank" title="YouTube"><img src="images/icon3.png" alt="YouTube"/></a>
+      <a class="soc-icon si-be" href="https://behance.net/divyanshisharma40" target="_blank" title="Behance"><img src="images/icon4.png" alt="Behance"/></a>
     </div>
   </footer>
 </div>
 
 <script>
+// ── MOBILE NAV ──
+function toggleMobileNav(){
+  const nav=document.getElementById('mobileNav');
+  const ham=document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
 // ── PAGE NAV ──
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
+  // Desktop nav
   document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
   document.getElementById('nl-'+id).classList.add('active');
+  // Mobile nav
+  document.querySelectorAll('.mobile-nav a').forEach(a=>a.classList.remove('active'));
+  const ml=document.getElementById('mnl-'+id);
+  if(ml) ml.classList.add('active');
   window.scrollTo(0,0);
   if(id==='home') animSkills();
 }
 
-// ── HOME PORTFOLIO FILTER ──
+// ── HOME FILTER ──
 function homeFilter(cat,btn){
   document.querySelectorAll('.pfbtn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
@@ -1241,7 +1208,7 @@ function homeFilter(cat,btn){
   });
 }
 
-// ── PORTFOLIO TABS ──
+// ── TABS ──
 function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
@@ -1273,81 +1240,56 @@ function submitCF(){
   document.getElementById('cfOk').classList.add('show');
 }
 
-// ════════════════════════════════════════════
-//   MODAL / LIGHTBOX  — MAIN LOGIC
-// ════════════════════════════════════════════
-
-
+// ── MODAL ──
 function openModal(card){
-
-  const overlay = document.getElementById('modal-overlay');
-
-  const videoWrap = document.getElementById('modal-video-wrap');
-  const iframe = document.getElementById('modal-iframe');
-
-  const imgWrap = document.getElementById('modal-img-wrap');
-  const img = document.getElementById('modal-img');
-
-  const title = document.getElementById('modal-title');
-  const desc = document.getElementById('modal-desc');
-  const cat = document.getElementById('modal-cat');
-
-  title.innerText = card.dataset.title || '';
-  desc.innerText = card.dataset.desc || '';
-  cat.innerText = card.dataset.catLabel || '';
-
   const videoUrl = card.dataset.video;
   const imageUrl = card.dataset.image;
+  const vWrap = document.getElementById('modal-video-wrap');
+  const iWrap = document.getElementById('modal-img-wrap');
+  const iframe = document.getElementById('modal-iframe');
+  const img    = document.getElementById('modal-img');
 
-  // VIDEO
+  document.getElementById('modal-title').textContent = card.dataset.title || '';
+  document.getElementById('modal-desc').textContent  = card.dataset.desc  || '';
+  document.getElementById('modal-cat').textContent   = card.dataset.catLabel || '';
+
   if(videoUrl){
-
-    videoWrap.style.display='block';
-    imgWrap.style.display='none';
-
     iframe.src = videoUrl;
-  }
-
-  // IMAGE
-  else if(imageUrl){
-
-    videoWrap.style.display='none';
-    imgWrap.style.display='block';
-
+    vWrap.style.display = 'block';
+    iWrap.style.display = 'none';
+  } else if(imageUrl){
     img.src = imageUrl;
+    iWrap.style.display = 'block';
+    vWrap.style.display = 'none';
   }
 
-  overlay.classList.add('open');
-
-  document.body.style.overflow='hidden';
-}
-
-function closeModal(e){
-
-  if(e.target.id==='modal-overlay'){
-    closeModalBtn();
-  }
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModalBtn(){
-
-  document.getElementById('modal-overlay')
-    .classList.remove('open');
-
-  document.getElementById('modal-iframe').src='';
-
-  document.body.style.overflow='';
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('modal-iframe').src = '';
+  document.getElementById('modal-img').src = '';
+  document.body.style.overflow = '';
 }
 
-// ESC CLOSE
-document.addEventListener('keydown', function(e){
+function closeModal(e){
+  if(e.target.id==='modal-overlay') closeModalBtn();
+}
 
-  if(e.key==='Escape'){
-    closeModalBtn();
-  }
-
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeModalBtn();
 });
 
+// Close mobile nav on outside click
+document.addEventListener('click',e=>{
+  const nav=document.getElementById('mobileNav');
+  const ham=document.getElementById('hamburger');
+  if(nav.classList.contains('open') && !nav.contains(e.target) && !ham.contains(e.target)){
+    closeMobileNav();
+  }
+});
 </script>
 </body>
 </html>
